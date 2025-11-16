@@ -1,0 +1,180 @@
+@page "/periodic-table"
+@using PeriodicTable.Models
+@using PeriodicTable.Services
+@using System.Collections.Generic
+@using System.Linq
+@inject PeriodicTableService PeriodicTableService
+@inject ResearchAgentManager ResearchAgentManager
+@inject ModelGenerator ModelGenerator
+
+<div class="periodic-table-container">
+    <h1>⚛️ Interactive Periodic Table with Quantum Analysis</h1>
+    
+    <div class="table-and-visualization">
+        <div class="periodic-table-grid">
+            @foreach (var element in elements)
+            {
+                <div class="element-button" 
+                     @onclick="() => SelectElement(element)"
+                     style="background-color: @element.HexColor;"
+                     title="@element.Name">
+                    <div class="atomic-number">@element.AtomicNumber</div>
+                    <div class="symbol">@element.Symbol</div>
+                    <div class="name">@element.Name</div>
+                </div>
+            }
+        </div>
+
+        @if (selectedElement is not null)
+        {
+            <div class="visualization-panel">
+                <h2>@selectedElement.Name (@selectedElement.Symbol)</h2>
+                
+                <div class="element-info">
+                    <p><strong>Atomic Number:</strong> @selectedElement.AtomicNumber</p>
+                    <p><strong>Atomic Mass:</strong> @selectedElement.AtomicMass.ToString("F3")</p>
+                    <p><strong>Category:</strong> @selectedElement.Category</p>
+                    <p><strong>Electron Shells:</strong> @selectedElement.ElectronShells</p>
+                </div>
+
+                @if (isLoading)
+                {
+                    <div class="loading">
+                        <p>🔬 Running quantum simulation...</p>
+                    </div>
+                }
+                else if (selectedVisual is not null && selectedElement.QuantumData is not null)
+                {
+                    <div class="quantum-results">
+                        <h3>Quantum Analysis Results</h3>
+                        
+                        <div class="results-grid">
+                            <div class="result-card">
+                                <h4>Stability Index</h4>
+                                <p class="result-value">@selectedElement.QuantumData.StabilityIndex.ToString("F2")</p>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: @(selectedElement.QuantumData.StabilityIndex * 100)%"></div>
+                                </div>
+                            </div>
+
+                            <div class="result-card">
+                                <h4>Bonding Potential</h4>
+                                <p class="result-value">@selectedElement.QuantumData.BondingPotential.ToString("F2")</p>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: @(selectedElement.QuantumData.BondingPotential * 100)%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="visualization">
+                            <h4>Atomic Model Visualization</h4>
+                            @if (svgVisualization is not null)
+                            {
+                                @((MarkupString)svgVisualization)
+                            }
+                        </div>
+
+                        <div class="orbital-data">
+                            <h4>Orbital Radii</h4>
+                            <div class="data-table">
+                                <div class="table-header">
+                                    <div>Shell</div>
+                                    <div>Radius</div>
+                                </div>
+                                @for (int i = 0; i < selectedElement.QuantumData.OrbitalRadii.Length; i++)
+                                {
+                                    <div class="table-row">
+                                        <div>Shell @(i + 1)</div>
+                                        <div>@selectedElement.QuantumData.OrbitalRadii[i].ToString("F3") Å</div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+                        <div class="probability-data">
+                            <h4>Electron Probability Distribution</h4>
+                            <div class="probability-bars">
+                                @for (int i = 0; i < selectedElement.QuantumData.ElectronProbabilities.Length; i++)
+                                {
+                                    <div class="probability-item">
+                                        <span>Orbital @(i + 1)</span>
+                                        <div class="bar">
+                                            <div class="bar-fill" style="width: @(selectedElement.QuantumData.ElectronProbabilities[i] * 100)%"></div>
+                                        </div>
+                                        <span>@(selectedElement.QuantumData.ElectronProbabilities[i].ToString("P1"))</span>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+                else if (!isLoading)
+                {
+                    <button class="btn-analyze" @onclick="AnalyzeElement">
+                        🔬 Analyze Element
+                    </button>
+                }
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    private List<Element> elements = new();
+    private Element? selectedElement;
+    private ElementVisual? selectedVisual;
+    private string? svgVisualization;
+    private bool isLoading = false;
+
+    protected override void OnInitialized()
+    {
+        elements = PeriodicTableService.GetAllElements();
+    }
+
+    private async Task SelectElement(Element element)
+    {
+        selectedElement = element;
+        selectedVisual = null;
+        svgVisualization = null;
+        
+        if (element.QuantumData is not null)
+        {
+            await DisplayAnalysis();
+        }
+    }
+
+    private async Task AnalyzeElement()
+    {
+        if (selectedElement is null) return;
+
+        isLoading = true;
+        try
+        {
+            selectedVisual = await ResearchAgentManager.AnalyzeElementAsync(selectedElement);
+            selectedElement.QuantumData = new QuantumElementData
+            {
+                ElementSymbol = selectedElement.Symbol,
+                GeneratedAt = DateTime.UtcNow
+            };
+            
+            await DisplayAnalysis();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error analyzing element: {ex.Message}");
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private async Task DisplayAnalysis()
+    {
+        if (selectedVisual is not null)
+        {
+            svgVisualization = ModelGenerator.GenerateSvgVisualization(selectedVisual);
+        }
+        await Task.CompletedTask;
+    }
+}

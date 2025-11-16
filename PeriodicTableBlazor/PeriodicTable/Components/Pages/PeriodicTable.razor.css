@@ -1,0 +1,331 @@
+.periodic-table-container {
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.periodic-table-container h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    background: linear-gradient(120deg, #0088ff, #00ff88, #ff0088);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.table-and-visualization {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+@media (max-width: 1200px) {
+    .table-and-visualization {
+        grid-template-columns: 1fr;
+    }
+}
+
+.periodic-table-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 8px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.element-button {
+    padding: 10px 8px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    min-height: 80px;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.element-button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.element-button:active {
+    transform: translateY(-2px);
+}
+
+.atomic-number {
+    font-size: 10px;
+    opacity: 0.7;
+    font-weight: bold;
+}
+
+.symbol {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.name {
+    font-size: 10px;
+    opacity: 0.8;
+    text-transform: uppercase;
+}
+
+.visualization-panel {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 25px;
+    overflow-y: auto;
+    max-height: 800px;
+}
+
+.visualization-panel h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.8em;
+    color: #00ff88;
+    border-bottom: 2px solid rgba(0, 255, 136, 0.3);
+    padding-bottom: 10px;
+}
+
+.element-info {
+    background: rgba(0, 136, 255, 0.1);
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    border-left: 4px solid #0088ff;
+}
+
+.element-info p {
+    margin: 8px 0;
+    font-size: 0.95em;
+}
+
+.loading {
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 1.2em;
+    color: #00ff88;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.btn-analyze {
+    width: 100%;
+    padding: 15px;
+    font-size: 1em;
+    font-weight: bold;
+    background: linear-gradient(120deg, #0088ff, #00ff88);
+    color: #000;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+.btn-analyze:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 136, 255, 0.3);
+}
+
+.btn-analyze:active {
+    transform: translateY(0);
+}
+
+.quantum-results {
+    margin-top: 20px;
+}
+
+.quantum-results h3 {
+    color: #00ffff;
+    border-bottom: 2px solid rgba(0, 255, 255, 0.3);
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+}
+
+.results-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.result-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.result-card h4 {
+    margin: 0 0 10px 0;
+    color: #ffff00;
+    font-size: 0.95em;
+}
+
+.result-value {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #00ff88;
+    margin: 8px 0;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 24px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #0088ff, #00ff88);
+    transition: width 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 5px;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.visualization {
+    margin-top: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 15px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.visualization h4 {
+    position: absolute;
+    top: -25px;
+    left: 0;
+    margin: 0;
+    color: #ffff00;
+    font-size: 0.95em;
+}
+
+.visualization svg {
+    width: 100%;
+    height: auto;
+    max-width: 300px;
+}
+
+.orbital-data,
+.probability-data {
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.orbital-data h4,
+.probability-data h4 {
+    margin-top: 0;
+    color: #ff6600;
+    margin-bottom: 12px;
+    font-size: 0.95em;
+}
+
+.data-table {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.table-header,
+.table-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.table-header {
+    background: rgba(0, 136, 255, 0.15);
+    font-weight: bold;
+    color: #0088ff;
+}
+
+.table-row:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.probability-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.probability-item {
+    display: grid;
+    grid-template-columns: 80px 1fr 60px;
+    gap: 10px;
+    align-items: center;
+    font-size: 0.9em;
+}
+
+.probability-item span:first-child {
+    color: #ffff00;
+    font-weight: bold;
+}
+
+.bar {
+    width: 100%;
+    height: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ff6600, #ffff00);
+    transition: width 0.3s ease;
+}
+
+/* Scrollbar styling */
+.visualization-panel::-webkit-scrollbar {
+    width: 8px;
+}
+
+.visualization-panel::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+}
+
+.visualization-panel::-webkit-scrollbar-thumb {
+    background: rgba(0, 136, 255, 0.5);
+    border-radius: 4px;
+}
+
+.visualization-panel::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 136, 255, 0.8);
+}

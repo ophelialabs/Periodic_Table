@@ -1,0 +1,168 @@
+﻿@page "/"
+
+<style>
+    .home-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        color: #fff;
+        border-radius: 10px;
+        min-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .hero {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .hero h1 {
+        font-size: 3.5em;
+        margin-bottom: 20px;
+        background: linear-gradient(120deg, #0088ff, #00ff88, #ff0088);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .hero p {
+        font-size: 1.3em;
+        color: #aaa;
+        margin-bottom: 30px;
+    }
+
+    .features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+        margin-bottom: 50px;
+    }
+
+    .feature-card {
+        background: rgba(255, 255, 255, 0.08);
+        padding: 25px;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(0, 136, 255, 0.5);
+        box-shadow: 0 10px 30px rgba(0, 136, 255, 0.2);
+    }
+
+    .feature-card h3 {
+        color: #00ff88;
+        margin-top: 0;
+        font-size: 1.3em;
+    }
+
+    .feature-card p {
+        color: #ccc;
+        line-height: 1.6;
+    }
+
+    .cta-button {
+        display: inline-block;
+        padding: 15px 40px;
+        background: linear-gradient(120deg, #0088ff, #00ff88);
+        color: #000;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: bold;
+        font-size: 1.1em;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+    }
+
+    .cta-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 136, 255, 0.4);
+    }
+
+    .stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 20px;
+        text-align: center;
+        margin-top: 40px;
+    }
+
+    .stat-item {
+        background: rgba(0, 136, 255, 0.1);
+        padding: 20px;
+        border-radius: 8px;
+        border-left: 4px solid #0088ff;
+    }
+
+    .stat-item .number {
+        font-size: 2.5em;
+        color: #00ff88;
+        font-weight: bold;
+    }
+
+    .stat-item .label {
+        color: #aaa;
+        margin-top: 10px;
+    }
+</style>
+
+<div class="home-container">
+    <div class="hero">
+        <h1>⚛️ Quantum Periodic Table</h1>
+        <p>Explore Elements Through Quantum Simulation</p>
+        <a href="/periodic-table" class="cta-button">Launch Periodic Table →</a>
+    </div>
+
+    <div class="features">
+        <div class="feature-card">
+            <h3>🔬 Quantum Analysis</h3>
+            <p>Harness quantum computing to analyze atomic properties including electron distributions, orbital radii, and stability indices.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>🎨 3D Visualization</h3>
+            <p>Interactive 3D atomic models showing electron clouds, orbital rings, and quantum simulation results in real-time.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>📊 Data Insights</h3>
+            <p>Comprehensive analytics including bonding potentials, electron probability distributions, and molecular characteristics.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>☁️ Cloud Integration</h3>
+            <p>Ready for Azure Quantum integration with support for IonQ, Quantinuum, and other quantum providers.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>⚡ Real-time Processing</h3>
+            <p>Fast quantum simulations with intelligent caching for seamless element analysis and comparison.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>📚 Educational</h3>
+            <p>Learn quantum computing concepts through practical chemistry applications and interactive demonstrations.</p>
+        </div>
+    </div>
+
+    <div class="stats">
+        <div class="stat-item">
+            <div class="number">118</div>
+            <div class="label">Elements Supported</div>
+        </div>
+        <div class="stat-item">
+            <div class="number">5</div>
+            <div class="label">Quantum Operations</div>
+        </div>
+        <div class="stat-item">
+            <div class="number">∞</div>
+            <div class="label">Possibilities</div>
+        </div>
+    </div>
+</div>
