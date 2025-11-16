@@ -1,0 +1,12 @@
+/Users/jesse/periodictable/periodictableC.ServiceDefaults/bin/Debug/net10.0/periodictableC.ServiceDefaults.deps.json
+/Users/jesse/periodictable/periodictableC.ServiceDefaults/bin/Debug/net10.0/periodictableC.ServiceDefaults.dll
+/Users/jesse/periodictable/periodictableC.ServiceDefaults/bin/Debug/net10.0/periodictableC.ServiceDefaults.pdb
+/Users/jesse/periodictable/periodictableC.ServiceDefaults/obj/Debug/net10.0/periodictableC.ServiceDefaults.csproj.AssemblyReference.cache
+/Users/jesse/periodictable/periodictableC.ServiceDefaults/obj/Debug/net10.0/periodictableC.ServiceDefaults.GeneratedMSBuildEditorConfig.editorconfig
+/Users/jesse/periodictable/periodictableC.ServiceDefaults/obj/Debug/net10.0/periodictableC.ServiceDefaults.AssemblyInfoInputs.cache
+/Users/jesse/periodictable/periodictableC.ServiceDefaults/obj/Debug/net10.0/periodictableC.ServiceDefaults.AssemblyInfo.cs
+/Users/jesse/periodictable/periodictableC.ServiceDefaults/obj/Debug/net10.0/periodictableC.ServiceDefaults.csproj.CoreCompileInputs.cache
+/Users/jesse/periodictable/periodictableC.ServiceDefaults/obj/Debug/net10.0/periodictableC.ServiceDefaults.dll
+/Users/jesse/periodictable/periodictableC.ServiceDefaults/obj/Debug/net10.0/refint/periodictableC.ServiceDefaults.dll
+/Users/jesse/periodictable/periodictableC.ServiceDefaults/obj/Debug/net10.0/periodictableC.ServiceDefaults.pdb
+/Users/jesse/periodictable/periodictableC.ServiceDefaults/obj/Debug/net10.0/ref/periodictableC.ServiceDefaults.dll

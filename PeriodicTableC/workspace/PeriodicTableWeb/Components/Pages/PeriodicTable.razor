@@ -1,0 +1,464 @@
+@page "/periodic-table"
+@rendermode InteractiveServer
+
+@using PeriodicTableWeb.Models
+@using PeriodicTableWeb.Services
+
+@inject ElementDataService ElementService
+@inject ResearchAgentManager ResearchAgent
+@inject DynamicModelGenerator ModelGenerator
+@inject ILogger<PeriodicTable> Logger
+
+<div class="periodic-table-container">
+    <div class="header">
+        <h1>🔬 Interactive Periodic Table with Quantum Research</h1>
+        <p class="subtitle">Explore elements and visualize quantum simulations</p>
+    </div>
+
+    <div class="content-grid">
+        <!-- Left Panel: Periodic Table -->
+        <div class="table-panel">
+            <h2>Periodic Table</h2>
+            <div class="element-grid">
+                @foreach (var element in ElementService.GetAllElements())
+                {
+                    <button class="element-button @(SelectedElement?.AtomicNumber == element.AtomicNumber ? "selected" : "")"
+                            style="background-color: @element.Color"
+                            @onclick="() => SelectElement(element)"
+                            title="@element.Name">
+                        <div class="element-number">@element.AtomicNumber</div>
+                        <div class="element-symbol">@element.Symbol</div>
+                    </button>
+                }
+            </div>
+        </div>
+
+        <!-- Right Panel: Element Details & 3D View -->
+        <div class="details-panel">
+            @if (SelectedElement != null)
+            {
+                <div class="element-info">
+                    <h2>@SelectedElement.Name</h2>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="label">Symbol:</span>
+                            <span class="value">@SelectedElement.Symbol</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Atomic Number:</span>
+                            <span class="value">@SelectedElement.AtomicNumber</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Atomic Mass:</span>
+                            <span class="value">@SelectedElement.AtomicMass</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Category:</span>
+                            <span class="value">@SelectedElement.Category</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Electron Config:</span>
+                            <span class="value">@SelectedElement.ElectronConfiguration</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Valence Electrons:</span>
+                            <span class="value">@SelectedElement.ValenceElectrons</span>
+                        </div>
+                    </div>
+
+                    <!-- 3D Model Section -->
+                    <div class="model-section">
+                        <h3>3D Atomic Model</h3>
+                        @if (Model3DData != null)
+                        {
+                            <div class="model-canvas">
+                                <canvas id="3d-canvas" @ref="CanvasElement"></canvas>
+                            </div>
+                            <div class="model-info">
+                                <p><strong>Orbital Shells:</strong> @Model3DData.ElectronClouds.Count</p>
+                                @foreach (var cloud in Model3DData.ElectronClouds)
+                                {
+                                    <p>Shell @cloud.ShellNumber: <span>@cloud.ElectronCount electrons at @cloud.OrbitalRadius.ToString("F2") units</span></p>
+                                }
+                            </div>
+                        }
+                    </div>
+
+                    <!-- Quantum Simulation Section -->
+                    <div class="simulation-section">
+                        <h3>Quantum Simulation</h3>
+                        <button class="btn-primary" @onclick="RunQuantumSimulation" disabled="@IsSimulating">
+                            @if (IsSimulating)
+                            {
+                                <span>⏳ Running...</span>
+                            }
+                            else
+                            {
+                                <span>🚀 Run Quantum Simulation</span>
+                            }
+                        </button>
+
+                        @if (QuantumResult != null)
+                        {
+                            <div class="simulation-results">
+                                <h4>Simulation Results</h4>
+                                <p><strong>Type:</strong> @QuantumResult.SimulationType</p>
+                                <p><strong>Execution Time:</strong> @QuantumResult.ExecutionTimeMs ms</p>
+                                <p><strong>Probabilities:</strong> @QuantumResult.MeasurementProbabilities.Length measurements</p>
+                                <div class="probability-bars">
+                                    @foreach (var prob in QuantumResult.MeasurementProbabilities.Take(16))
+                                    {
+                                        <div class="prob-bar">
+                                            <div class="prob-fill" style="height: @(prob * 100)%;" title="@prob.ToString("F3")"></div>
+                                        </div>
+                                    }
+                                </div>
+
+                                @if (ElectronSpheres != null && ElectronSpheres.Length > 0)
+                                {
+                                    <div class="electron-info">
+                                        <p><strong>Generated Electron Spheres:</strong> @ElectronSpheres.Length</p>
+                                        <p><strong>Average Opacity:</strong> @ElectronSpheres.Average(s => s.Opacity).ToString("F3")</p>
+                                    </div>
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="placeholder">
+                    <p>👈 Select an element to begin</p>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    private Element? SelectedElement;
+    private Element3DModelData? Model3DData;
+    private QuantumSimulationResult? QuantumResult;
+    private ElectronSphereData[]? ElectronSpheres;
+    private bool IsSimulating = false;
+
+    private ElementReference CanvasElement;
+    private ElementReference ElectronSpheresCanvas;
+
+    protected override void OnInitialized()
+    {
+        Logger.LogInformation("PeriodicTable component initialized");
+    }
+
+    private async Task SelectElement(Element element)
+    {
+        SelectedElement = element;
+        QuantumResult = null;
+        ElectronSpheres = null;
+
+        Logger.LogInformation($"Selected element: {element.Name} (Z={element.AtomicNumber})");
+
+        try
+        {
+            // Generate 3D model for the selected element
+            Model3DData = await ResearchAgent.GenerateElement3DModel(element.AtomicNumber);
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(ex, $"Error generating 3D model for {element.Name}");
+        }
+    }
+
+    private async Task RunQuantumSimulation()
+    {
+        if (SelectedElement == null) return;
+
+        IsSimulating = true;
+        Logger.LogInformation($"Starting quantum simulation for {SelectedElement.Name}");
+
+        try
+        {
+            // Run the quantum simulation
+            QuantumResult = await ResearchAgent.RunQuantumSimulation(
+                SelectedElement.AtomicNumber,
+                "electron-distribution"
+            );
+
+            // Generate 3D electron sphere positions
+            if (Model3DData != null && QuantumResult != null)
+            {
+                ElectronSpheres = ModelGenerator.Generate3DElectronSpheres(Model3DData, QuantumResult);
+
+                // Material properties would be used for advanced 3D rendering
+                var materials = ModelGenerator.GenerateMaterialProperties(SelectedElement, QuantumResult);
+
+                // Data visualization plot
+                var dataPlot = ModelGenerator.GenerateDataPlot(QuantumResult);
+
+                Logger.LogInformation($"Simulation complete: {ElectronSpheres.Length} electron spheres generated");
+            }
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(ex, "Error running quantum simulation");
+        }
+        finally
+        {
+            IsSimulating = false;
+        }
+    }
+}
+
+<style>
+    .periodic-table-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 20px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .header {
+        text-align: center;
+        margin-bottom: 30px;
+        padding: 20px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border-radius: 10px;
+    }
+
+    .header h1 {
+        margin: 0;
+        font-size: 2.5em;
+    }
+
+    .subtitle {
+        margin: 10px 0 0 0;
+        font-size: 1.1em;
+        opacity: 0.9;
+    }
+
+    .content-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .table-panel, .details-panel {
+        background: white;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .table-panel h2, .details-panel h2 {
+        margin-top: 0;
+        color: #333;
+        border-bottom: 2px solid #667eea;
+        padding-bottom: 10px;
+    }
+
+    .element-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 8px;
+        margin-top: 15px;
+    }
+
+    .element-button {
+        aspect-ratio: 1;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        color: white;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        padding: 5px;
+    }
+
+    .element-button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .element-button.selected {
+        border: 3px solid #333;
+        box-shadow: 0 0 15px rgba(102, 126, 234, 0.6);
+        transform: scale(1.08);
+    }
+
+    .element-number {
+        font-size: 0.7em;
+        opacity: 0.8;
+    }
+
+    .element-symbol {
+        font-size: 1.2em;
+    }
+
+    .element-info {
+        animation: slideIn 0.3s ease;
+    }
+
+    .info-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        margin: 15px 0;
+    }
+
+    .info-item {
+        padding: 10px;
+        background: #f5f5f5;
+        border-radius: 5px;
+        border-left: 3px solid #667eea;
+    }
+
+    .info-item .label {
+        font-weight: bold;
+        color: #667eea;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .info-item .value {
+        color: #333;
+    }
+
+    .model-section, .simulation-section {
+        margin-top: 25px;
+        padding-top: 20px;
+        border-top: 2px solid #eee;
+    }
+
+    .model-section h3, .simulation-section h3 {
+        color: #667eea;
+        margin-top: 0;
+    }
+
+    .model-canvas {
+        background: #f9f9f9;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        margin: 15px 0;
+        min-height: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    canvas {
+        width: 100%;
+        height: 100%;
+    }
+
+    .model-info {
+        background: #f5f5f5;
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 0.9em;
+    }
+
+    .model-info p {
+        margin: 5px 0;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 5px;
+        font-size: 1em;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin: 15px 0;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-primary:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
+    .simulation-results {
+        background: #f5f5f5;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 15px;
+    }
+
+    .simulation-results h4 {
+        margin-top: 0;
+        color: #667eea;
+    }
+
+    .probability-bars {
+        display: flex;
+        gap: 4px;
+        margin: 15px 0;
+        align-items: flex-end;
+        height: 100px;
+        background: white;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .prob-bar {
+        flex: 1;
+        background: #e0e0e0;
+        border-radius: 3px;
+        position: relative;
+        min-height: 5px;
+    }
+
+    .prob-fill {
+        background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+        width: 100%;
+        border-radius: 3px;
+        transition: height 0.3s ease;
+    }
+
+    .electron-info {
+        background: white;
+        padding: 10px;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+
+    .electron-info p {
+        margin: 5px 0;
+        font-size: 0.9em;
+    }
+
+    .placeholder {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 300px;
+        color: #999;
+        font-size: 1.3em;
+    }
+
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>

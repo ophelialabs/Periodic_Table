@@ -1,0 +1,2 @@
+/Users/jesse/Periodic_Table/Research/Periodic_Table/obj/Debug/net10.0/EmbeddedAttribute.cs
+/Users/jesse/Periodic_Table/Research/Periodic_Table/obj/Debug/net10.0/ValidatableTypeAttribute.cs

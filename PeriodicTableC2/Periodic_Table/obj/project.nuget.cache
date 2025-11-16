@@ -1,0 +1,40 @@
+{
+  "version": 2,
+  "dgSpecHash": "5y+AG1HNJno=",
+  "success": true,
+  "projectFilePath": "/Users/jesse/Periodic_Table/Research/Periodic_Table/Periodic_Table.csproj",
+  "expectedPackageFiles": [
+    "/Users/jesse/.nuget/packages/azure.core/1.8.1/azure.core.1.8.1.nupkg.sha512",
+    "/Users/jesse/.nuget/packages/azure.quantum.jobs/1.0.0-beta.1/azure.quantum.jobs.1.0.0-beta.1.nupkg.sha512",
+    "/Users/jesse/.nuget/packages/microsoft.aspnetcore.app.internal.assets/10.0.0-rc.1.25451.107/microsoft.aspnetcore.app.internal.assets.10.0.0-rc.1.25451.107.nupkg.sha512",
+    "/Users/jesse/.nuget/packages/microsoft.bcl.asyncinterfaces/1.0.0/microsoft.bcl.asyncinterfaces.1.0.0.nupkg.sha512",
+    "/Users/jesse/.nuget/packages/microsoft.extensions.logging.console/8.0.0/microsoft.extensions.logging.console.8.0.0.nupkg.sha512",
+    "/Users/jesse/.nuget/packages/system.numerics.vectors/4.5.0/system.numerics.vectors.4.5.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1510",
+      "level": "Warning",
+      "message": "PackageReference Microsoft.Extensions.Logging.Console will not be pruned. Consider removing this package from your dependencies, as it is likely unnecessary.",
+      "projectPath": "/Users/jesse/Periodic_Table/Research/Periodic_Table/Periodic_Table.csproj",
+      "warningLevel": 1,
+      "filePath": "/Users/jesse/Periodic_Table/Research/Periodic_Table/Periodic_Table.csproj",
+      "libraryId": "Microsoft.Extensions.Logging.Console",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1510",
+      "level": "Warning",
+      "message": "PackageReference System.Numerics.Vectors will not be pruned. Consider removing this package from your dependencies, as it is likely unnecessary.",
+      "projectPath": "/Users/jesse/Periodic_Table/Research/Periodic_Table/Periodic_Table.csproj",
+      "warningLevel": 1,
+      "filePath": "/Users/jesse/Periodic_Table/Research/Periodic_Table/Periodic_Table.csproj",
+      "libraryId": "System.Numerics.Vectors",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    }
+  ]
+}
