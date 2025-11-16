@@ -1,0 +1,28 @@
+{
+  "azure_quantum": {
+    "enabled": false,
+    "workspace_id": "your-workspace-id",
+    "subscription_id": "your-subscription-id",
+    "resource_group": "your-resource-group",
+    "location": "westus",
+    "provider": "ionq",
+    "target": "ionq.simulator"
+  },
+  "simulation": {
+    "num_qubits": 4,
+    "max_iterations": 100,
+    "precision": "double"
+  },
+  "visualization": {
+    "show_bohr_model": true,
+    "show_orbitals": true,
+    "show_molecular_structures": true,
+    "resolution": 20
+  },
+  "ui": {
+    "theme": "clam",
+    "window_width": 1600,
+    "window_height": 1000,
+    "font_size": 10
+  }
+}

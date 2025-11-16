@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>false</UseWindowsForms>
+    <StartupObject>PeriodicTableApp.App</StartupObject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HelixToolkit.Wpf" Version="2.22.0" />
+    <PackageReference Include="HelixToolkit.Wpf.SharpDX" Version="2.22.0" />
+    <PackageReference Include="MvvmLight" Version="5.4.1.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Azure.Quantum" Version="0.31.2309.2923" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\QuantumRD\QuantumRD.csproj" />
+  </ItemGroup>
+
+</Project>

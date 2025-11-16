@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="PeriodicTableApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:PeriodicTableApp"
+        Title="Interactive Periodic Table - Quantum Research" Height="1000" Width="1600"
+        Background="#1E1E1E" Foreground="White">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Main content area -->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="350"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Left Panel - Periodic Table -->
+            <StackPanel Grid.Column="0" Background="#252526" Margin="0,0,1,0">
+                <TextBlock Text="Periodic Table" FontSize="18" FontWeight="Bold" Padding="10" 
+                           Foreground="#007ACC"/>
+                
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Height="500">
+                    <ItemsControl ItemsSource="{Binding AllElements}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button Command="{Binding DataContext.SelectElementCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                        CommandParameter="{Binding .}"
+                                        Background="#3E3E42" Foreground="White" Margin="5"
+                                        Padding="10" Height="40">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding AtomicNumber}" Width="30" FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding Symbol}" Width="50" FontWeight="Bold" Margin="10,0,0,0"/>
+                                        <TextBlock Text="{Binding Name}" Margin="10,0,0,0"/>
+                                    </StackPanel>
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+
+                <Separator Margin="0,10"/>
+                
+                <TextBlock Text="Selected Element" FontSize="14" FontWeight="Bold" Padding="10,10,10,0"/>
+                <TextBlock Text="{Binding SelectedElement.Name}" Padding="10" FontSize="12"/>
+                
+                <Button Content="Simulate Element" 
+                        Command="{Binding SimulateElementCommand}"
+                        Background="#0E7C0E" Foreground="White" Margin="10" Padding="10"
+                        Height="35" FontSize="12" FontWeight="Bold"/>
+
+                <TextBlock Text="Bond Simulation" FontSize="14" FontWeight="Bold" Padding="10,10,10,0"/>
+                <TextBlock Text="Second Element" FontSize="11" Padding="10,5,10,0" Foreground="#999999"/>
+                
+                <ComboBox ItemsSource="{Binding AllElements}" 
+                         SelectedItem="{Binding SelectedElement2}"
+                         Margin="10" Height="30"
+                         DisplayMemberPath="Symbol"/>
+
+                <Button Content="Simulate Bond" 
+                        Command="{Binding SimulateBondCommand}"
+                        Background="#0E7C0E" Foreground="White" Margin="10" Padding="10"
+                        Height="35" FontSize="12" FontWeight="Bold"/>
+
+                <Button Content="Clear" 
+                        Command="{Binding ClearSelectionCommand}"
+                        Background="#5A5A5A" Foreground="White" Margin="10" Padding="10"
+                        Height="30" FontSize="11"/>
+            </StackPanel>
+
+            <!-- Center Panel - 3D Viewer -->
+            <Border Grid.Column="1" Background="#1E1E1E" BorderBrush="#3E3E42" BorderThickness="1">
+                <Viewport3D x:Name="viewport3D">
+                    <Viewport3D.Camera>
+                        <PerspectiveCamera Position="0,0,3" LookDirection="0,0,-1" UpDirection="0,1,0"/>
+                    </Viewport3D.Camera>
+                </Viewport3D>
+            </Border>
+
+            <!-- Right Panel - Properties -->
+            <StackPanel Grid.Column="2" Background="#252526" Margin="1,0,0,0" Padding="10">
+                <TextBlock Text="Element Properties" FontSize="16" FontWeight="Bold" 
+                           Foreground="#007ACC" Margin="0,0,0,10"/>
+
+                <TextBlock Text="Atomic Number:" FontWeight="Bold"/>
+                <TextBlock Text="{Binding SelectedElement.AtomicNumber}" Margin="0,0,0,10"/>
+
+                <TextBlock Text="Atomic Mass:" FontWeight="Bold"/>
+                <TextBlock Text="{Binding SelectedElement.AtomicMass}" Margin="0,0,0,10"/>
+
+                <TextBlock Text="Electron Configuration:" FontWeight="Bold"/>
+                <TextBlock Text="{Binding SelectedElement.ElectronConfiguration}" 
+                          TextWrapping="Wrap" Margin="0,0,0,10"/>
+
+                <TextBlock Text="Density (g/cm³):" FontWeight="Bold"/>
+                <TextBlock Text="{Binding SelectedElement.Density, StringFormat='{0:F3}'}" Margin="0,0,0,10"/>
+
+                <Separator Margin="0,10"/>
+
+                <TextBlock Text="Quantum Properties" FontSize="14" FontWeight="Bold" 
+                          Foreground="#007ACC" Margin="0,10,0,10"/>
+
+                <StackPanel>
+                    <TextBlock Text="Conductivity:" FontWeight="Bold"/>
+                    <ProgressBar Value="{Binding SelectedElement.QuantumProperties.Conductivity, ConverterParameter=100, StringFormat='{0:P}'}" 
+                                Height="20" Margin="0,5"/>
+                    <TextBlock Text="{Binding SelectedElement.QuantumProperties.Conductivity, StringFormat='{0:P}'}" 
+                              FontSize="11" Foreground="#999999"/>
+                </StackPanel>
+
+                <StackPanel Margin="0,10,0,0">
+                    <TextBlock Text="Density:" FontWeight="Bold"/>
+                    <ProgressBar Value="{Binding SelectedElement.QuantumProperties.Density}" 
+                                Maximum="1" Height="20" Margin="0,5"/>
+                    <TextBlock Text="{Binding SelectedElement.QuantumProperties.Density, StringFormat='{0:F2}'}" 
+                              FontSize="11" Foreground="#999999"/>
+                </StackPanel>
+
+                <StackPanel Margin="0,10,0,0">
+                    <TextBlock Text="Hardness:" FontWeight="Bold"/>
+                    <ProgressBar Value="{Binding SelectedElement.QuantumProperties.Hardness}" 
+                                Maximum="1" Height="20" Margin="0,5" Foreground="#FF6B6B"/>
+                    <TextBlock Text="{Binding SelectedElement.QuantumProperties.Hardness, StringFormat='{0:F2}'}" 
+                              FontSize="11" Foreground="#999999"/>
+                </StackPanel>
+
+                <StackPanel Margin="0,10,0,0">
+                    <TextBlock Text="Reactivity:" FontWeight="Bold"/>
+                    <ProgressBar Value="{Binding SelectedElement.QuantumProperties.Reactivity}" 
+                                Maximum="1" Height="20" Margin="0,5" Foreground="#FFB900"/>
+                    <TextBlock Text="{Binding SelectedElement.QuantumProperties.Reactivity, StringFormat='{0:F2}'}" 
+                              FontSize="11" Foreground="#999999"/>
+                </StackPanel>
+
+                <TextBlock Text="Last Simulation:" FontWeight="Bold" Margin="0,15,0,5"/>
+                <TextBlock Text="{Binding SelectedElement.QuantumProperties.LastSimulationTime, StringFormat='{0:G}'}" 
+                          FontSize="11" Foreground="#999999" TextWrapping="Wrap"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Status Bar -->
+        <Border Grid.Row="1" Background="#252526" BorderBrush="#3E3E42" BorderThickness="0,1,0,0">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Padding="10">
+                <TextBlock Text="{Binding StatusMessage}" Foreground="White" VerticalAlignment="Center" Width="400"/>
+                <ProgressBar Value="{Binding ProgressValue}" Width="200" Height="20" Margin="20,0,0,0"/>
+                <TextBlock Text="{Binding ProgressValue, StringFormat='{0}%'}" Margin="10,0,0,0" 
+                          Foreground="White" VerticalAlignment="Center"/>
+                <TextBlock Text="Loading..." Margin="20,0,0,0" Foreground="#FFB900" VerticalAlignment="Center">
+                    <TextBlock.Visibility>
+                        <MultiBinding Converter="{StaticResource BoolToVisibility}">
+                            <Binding Path="IsLoading"/>
+                        </MultiBinding>
+                    </TextBlock.Visibility>
+                </TextBlock>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

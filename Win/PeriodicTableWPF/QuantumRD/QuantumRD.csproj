@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.Quantum.Sdk/0.31.2309.2923">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Quantum.Runtime" Version="0.31.2309.2923" />
+    <PackageReference Include="Microsoft.Quantum.Intrinsic" Version="0.31.2309.2923" />
+    <PackageReference Include="Microsoft.Quantum.Math" Version="0.31.2309.2923" />
+  </ItemGroup>
+
+</Project>

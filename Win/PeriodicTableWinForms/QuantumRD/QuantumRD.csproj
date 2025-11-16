@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.Quantum.Sdk/0.47.241024">
+
+  <PropertyGroup>
+    <AssemblyName>QuantumRD</AssemblyName>
+    <RootNamespace>QuantumRD</RootNamespace>
+    <OutputType>Library</OutputType>
+  </PropertyGroup>
+
+</Project>

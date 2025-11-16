@@ -1,0 +1,10 @@
+{
+  "name": "QuantumRD",
+  "version": "1.0.0",
+  "authors": ["Quantum Research Lab"],
+  "description": "Quantum Research and Development operations for periodic table analysis",
+  "user_code": [
+    "quantum/QuantumRD.qs"
+  ],
+  "manifest-version": "0.1"
+}
