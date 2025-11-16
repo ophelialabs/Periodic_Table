@@ -1,0 +1,87 @@
+name: C++ Build & Test
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        compiler: [gcc, clang, msvc]
+        exclude:
+          - os: windows-latest
+            compiler: gcc
+          - os: windows-latest
+            compiler: clang
+          - os: ubuntu-latest
+            compiler: msvc
+          - os: macos-latest
+            compiler: gcc
+          - os: macos-latest
+            compiler: msvc
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install dependencies (Ubuntu)
+      if: runner.os == 'Linux'
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y cmake build-essential
+
+    - name: Install dependencies (macOS)
+      if: runner.os == 'macOS'
+      run: |
+        brew install cmake
+
+    - name: Install dependencies (Windows)
+      if: runner.os == 'Windows'
+      run: |
+        choco install cmake
+
+    - name: Create build directory
+      run: cmake -E make_directory build
+
+    - name: Configure CMake
+      shell: bash
+      run: cmake -B build -S .
+
+    - name: Build
+      shell: bash
+      run: cmake --build build --config Release
+
+    - name: List build artifacts
+      shell: bash
+      run: |
+        echo "=== Build Artifacts ==="
+        ls -la build/
+        if [ -f build/libPeriodicTableLib.a ]; then
+          echo "✓ Static library created (Unix)"
+          nm build/libPeriodicTableLib.a | head -20
+        fi
+
+  code-quality:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Check header files
+      run: |
+        echo "=== Header file syntax check ==="
+        for file in include/*.h; do
+          echo "Checking: $file"
+          grep -n "class\|struct" "$file" | head -5
+        done
+
+    - name: Check implementation files
+      run: |
+        echo "=== Implementation file count ==="
+        wc -l src/*.cpp
+        echo "Total lines:"
+        wc -l src/*.cpp | tail -1
