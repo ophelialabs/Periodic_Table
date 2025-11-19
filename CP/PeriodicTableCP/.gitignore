@@ -1,0 +1,63 @@
+# Build artifacts
+/build/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+*.cmake
+
+# IDE files
+.vscode/
+.vs/
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.xcodeproj/
+.idea/
+*.swp
+*.swo
+*~
+
+# Compiled binaries and libraries
+*.o
+*.a
+*.lib
+*.so
+*.dylib
+*.dll
+*.exe
+*.out
+
+# Debugging
+*.dSYM/
+*.su
+*.gch
+
+# Q# build artifacts
+QuantumRD/.qsharp/
+QuantumRD/bin/
+QuantumRD/obj/
+QuantumRD/*.csproj
+
+# OS specific
+.DS_Store
+Thumbs.db
+*.swp
+
+# Test artifacts
+test_*.cpp
+!test_*.cpp.example
+
+# Azure Quantum
+*.qir
+azure_config.json
+quantum_results.json
+
+# Python cache (if any integration)
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Dependencies (if using package managers)
+conan/
+vcpkg_installed/

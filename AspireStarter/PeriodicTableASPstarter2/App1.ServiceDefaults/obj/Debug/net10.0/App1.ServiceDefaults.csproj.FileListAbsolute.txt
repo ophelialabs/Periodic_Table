@@ -10,3 +10,16 @@
 /Users/jesse/Periodic_Table/Research/App1.ServiceDefaults/obj/Debug/net10.0/refint/App1.ServiceDefaults.dll
 /Users/jesse/Periodic_Table/Research/App1.ServiceDefaults/obj/Debug/net10.0/App1.ServiceDefaults.pdb
 /Users/jesse/Periodic_Table/Research/App1.ServiceDefaults/obj/Debug/net10.0/ref/App1.ServiceDefaults.dll
+/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PeriodicTableASPstarter2/App1.ServiceDefaults/bin/Debug/net10.0/App1.ServiceDefaults.deps.json
+/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PeriodicTableASPstarter2/App1.ServiceDefaults/bin/Debug/net10.0/App1.ServiceDefaults.dll
+/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PeriodicTableASPstarter2/App1.ServiceDefaults/bin/Debug/net10.0/App1.ServiceDefaults.pdb
+/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PeriodicTableASPstarter2/App1.ServiceDefaults/obj/Debug/net10.0/App1.ServiceDefaults.csproj.AssemblyReference.cache
+/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PeriodicTableASPstarter2/App1.ServiceDefaults/obj/Debug/net10.0/App1.ServiceDefaults.GeneratedMSBuildEditorConfig.editorconfig
+/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PeriodicTableASPstarter2/App1.ServiceDefaults/obj/Debug/net10.0/App1.ServiceDefaults.AssemblyInfoInputs.cache
+/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PeriodicTableASPstarter2/App1.ServiceDefaults/obj/Debug/net10.0/App1.ServiceDefaults.AssemblyInfo.cs
+/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PeriodicTableASPstarter2/App1.ServiceDefaults/obj/Debug/net10.0/App1.ServiceDefaults.csproj.CoreCompileInputs.cache
+/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PeriodicTableASPstarter2/App1.ServiceDefaults/obj/Debug/net10.0/App1.ServiceDefaults.sourcelink.json
+/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PeriodicTableASPstarter2/App1.ServiceDefaults/obj/Debug/net10.0/App1.ServiceDefaults.dll
+/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PeriodicTableASPstarter2/App1.ServiceDefaults/obj/Debug/net10.0/refint/App1.ServiceDefaults.dll
+/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PeriodicTableASPstarter2/App1.ServiceDefaults/obj/Debug/net10.0/App1.ServiceDefaults.pdb
+/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PeriodicTableASPstarter2/App1.ServiceDefaults/obj/Debug/net10.0/ref/App1.ServiceDefaults.dll

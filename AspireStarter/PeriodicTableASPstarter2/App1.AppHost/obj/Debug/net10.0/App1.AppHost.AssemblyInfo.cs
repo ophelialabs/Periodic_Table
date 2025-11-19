@@ -17,15 +17,17 @@ using System.Reflection;
     "xt/"))]
 [assembly: System.Reflection.AssemblyMetadata("dcpbinpath", ("/Users/jesse/.nuget/packages/aspire.hosting.orchestration.osx-arm64/9.5.1/tools/e" +
     "xt/bin/"))]
-[assembly: System.Reflection.AssemblyMetadata("apphostprojectpath", "/Users/jesse/Periodic_Table/Research/App1.AppHost")]
+[assembly: System.Reflection.AssemblyMetadata("apphostprojectpath", ("/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PeriodicTableASPst" +
+    "arter2/App1.AppHost"))]
 [assembly: System.Reflection.AssemblyMetadata("apphostprojectname", "App1.AppHost.csproj")]
 [assembly: System.Reflection.AssemblyMetadata("aspiredashboardpath", ("/Users/jesse/.nuget/packages/aspire.dashboard.sdk.osx-arm64/9.5.1/tools/Aspire.Da" +
     "shboard.dll"))]
-[assembly: System.Reflection.AssemblyMetadataAttribute("apphostprojectbaseintermediateoutputpath", "/Users/jesse/Periodic_Table/Research/App1.AppHost/obj/")]
+[assembly: System.Reflection.AssemblyMetadataAttribute("apphostprojectbaseintermediateoutputpath", ("/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PeriodicTableASPst" +
+    "arter2/App1.AppHost/obj/"))]
 [assembly: System.Reflection.AssemblyCompanyAttribute("App1.AppHost")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a9032da324de2be6f203653197a5c5e736f88663")]
 [assembly: System.Reflection.AssemblyProductAttribute("App1.AppHost")]
 [assembly: System.Reflection.AssemblyTitleAttribute("App1.AppHost")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

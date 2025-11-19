@@ -17,5 +17,5 @@ public class App1_AppHost
     /// <summary>
     /// The path to the Aspire Host project.
     /// </summary>
-    public static string ProjectPath => """/Users/jesse/Periodic_Table/Research/App1.AppHost""";
+    public static string ProjectPath => """/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PeriodicTableASPstarter2/App1.AppHost""";
 }

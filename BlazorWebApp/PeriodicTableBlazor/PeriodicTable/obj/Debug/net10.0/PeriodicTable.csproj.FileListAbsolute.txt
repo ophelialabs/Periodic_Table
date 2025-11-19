@@ -1,0 +1,9 @@
+/Users/jesse/Desktop/Company/Tools/PeriodicTable/BlazorWebApp/PeriodicTableBlazor/PeriodicTable/obj/Debug/net10.0/EmbeddedAttribute.cs
+/Users/jesse/Desktop/Company/Tools/PeriodicTable/BlazorWebApp/PeriodicTableBlazor/PeriodicTable/obj/Debug/net10.0/ValidatableTypeAttribute.cs
+/Users/jesse/Desktop/Company/Tools/PeriodicTable/BlazorWebApp/PeriodicTableBlazor/PeriodicTable/obj/Debug/net10.0/rpswa.dswa.cache.json
+/Users/jesse/Desktop/Company/Tools/PeriodicTable/BlazorWebApp/PeriodicTableBlazor/PeriodicTable/obj/Debug/net10.0/PeriodicTable.GeneratedMSBuildEditorConfig.editorconfig
+/Users/jesse/Desktop/Company/Tools/PeriodicTable/BlazorWebApp/PeriodicTableBlazor/PeriodicTable/obj/Debug/net10.0/PeriodicTable.AssemblyInfoInputs.cache
+/Users/jesse/Desktop/Company/Tools/PeriodicTable/BlazorWebApp/PeriodicTableBlazor/PeriodicTable/obj/Debug/net10.0/PeriodicTable.AssemblyInfo.cs
+/Users/jesse/Desktop/Company/Tools/PeriodicTable/BlazorWebApp/PeriodicTableBlazor/PeriodicTable/obj/Debug/net10.0/PeriodicTable.csproj.CoreCompileInputs.cache
+/Users/jesse/Desktop/Company/Tools/PeriodicTable/BlazorWebApp/PeriodicTableBlazor/PeriodicTable/obj/Debug/net10.0/PeriodicTable.MvcApplicationPartsAssemblyInfo.cache
+/Users/jesse/Desktop/Company/Tools/PeriodicTable/BlazorWebApp/PeriodicTableBlazor/PeriodicTable/obj/Debug/net10.0/PeriodicTable.sourcelink.json

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "CDTOSyuI2eI=",
+  "dgSpecHash": "vV+yovCrKVA=",
   "success": true,
-  "projectFilePath": "/Users/jesse/Periodic_Table/Research/App1.ApiService/App1.ApiService.csproj",
+  "projectFilePath": "/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PeriodicTableASPstarter2/App1.ApiService/App1.ApiService.csproj",
   "expectedPackageFiles": [
     "/Users/jesse/.nuget/packages/microsoft.aspnetcore.openapi/10.0.0-rc.1.25451.107/microsoft.aspnetcore.openapi.10.0.0-rc.1.25451.107.nupkg.sha512",
     "/Users/jesse/.nuget/packages/microsoft.extensions.ambientmetadata.application/9.9.0/microsoft.extensions.ambientmetadata.application.9.9.0.nupkg.sha512",

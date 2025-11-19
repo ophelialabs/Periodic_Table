@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1LRzYLBt/l0=",
+  "dgSpecHash": "U4Q2Wgk5++k=",
   "success": true,
-  "projectFilePath": "/Users/jesse/Periodic_Table/Research/App1.AppHost/App1.AppHost.csproj",
+  "projectFilePath": "/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PeriodicTableASPstarter2/App1.AppHost/App1.AppHost.csproj",
   "expectedPackageFiles": [
     "/Users/jesse/.nuget/packages/aspire.dashboard.sdk.osx-arm64/9.5.1/aspire.dashboard.sdk.osx-arm64.9.5.1.nupkg.sha512",
     "/Users/jesse/.nuget/packages/aspire.hosting/9.5.1/aspire.hosting.9.5.1.nupkg.sha512",

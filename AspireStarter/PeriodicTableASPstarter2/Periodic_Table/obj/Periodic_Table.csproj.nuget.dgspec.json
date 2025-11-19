@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/jesse/Periodic_Table/Research/Periodic_Table/Periodic_Table.csproj": {}
+    "/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PeriodicTableASPstarter2/Periodic_Table/Periodic_Table.csproj": {}
   },
   "projects": {
-    "/Users/jesse/Periodic_Table/Research/Periodic_Table/Periodic_Table.csproj": {
+    "/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PeriodicTableASPstarter2/Periodic_Table/Periodic_Table.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/jesse/Periodic_Table/Research/Periodic_Table/Periodic_Table.csproj",
+        "projectUniqueName": "/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PeriodicTableASPstarter2/Periodic_Table/Periodic_Table.csproj",
         "projectName": "Periodic_Table",
-        "projectPath": "/Users/jesse/Periodic_Table/Research/Periodic_Table/Periodic_Table.csproj",
+        "projectPath": "/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PeriodicTableASPstarter2/Periodic_Table/Periodic_Table.csproj",
         "packagesPath": "/Users/jesse/.nuget/packages/",
-        "outputPath": "/Users/jesse/Periodic_Table/Research/Periodic_Table/obj/",
+        "outputPath": "/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PeriodicTableASPstarter2/Periodic_Table/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/jesse/.nuget/NuGet/NuGet.Config"

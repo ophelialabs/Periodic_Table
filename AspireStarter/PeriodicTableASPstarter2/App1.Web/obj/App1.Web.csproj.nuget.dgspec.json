@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/jesse/Periodic_Table/Research/App1.Web/App1.Web.csproj": {}
+    "/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PeriodicTableASPstarter2/App1.Web/App1.Web.csproj": {}
   },
   "projects": {
-    "/Users/jesse/Periodic_Table/Research/App1.ServiceDefaults/App1.ServiceDefaults.csproj": {
+    "/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PeriodicTableASPstarter2/App1.ServiceDefaults/App1.ServiceDefaults.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/jesse/Periodic_Table/Research/App1.ServiceDefaults/App1.ServiceDefaults.csproj",
+        "projectUniqueName": "/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PeriodicTableASPstarter2/App1.ServiceDefaults/App1.ServiceDefaults.csproj",
         "projectName": "App1.ServiceDefaults",
-        "projectPath": "/Users/jesse/Periodic_Table/Research/App1.ServiceDefaults/App1.ServiceDefaults.csproj",
+        "projectPath": "/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PeriodicTableASPstarter2/App1.ServiceDefaults/App1.ServiceDefaults.csproj",
         "packagesPath": "/Users/jesse/.nuget/packages/",
-        "outputPath": "/Users/jesse/Periodic_Table/Research/App1.ServiceDefaults/obj/",
+        "outputPath": "/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PeriodicTableASPstarter2/App1.ServiceDefaults/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/jesse/.nuget/NuGet/NuGet.Config"
@@ -510,14 +510,14 @@
         }
       }
     },
-    "/Users/jesse/Periodic_Table/Research/App1.Web/App1.Web.csproj": {
+    "/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PeriodicTableASPstarter2/App1.Web/App1.Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/jesse/Periodic_Table/Research/App1.Web/App1.Web.csproj",
+        "projectUniqueName": "/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PeriodicTableASPstarter2/App1.Web/App1.Web.csproj",
         "projectName": "App1.Web",
-        "projectPath": "/Users/jesse/Periodic_Table/Research/App1.Web/App1.Web.csproj",
+        "projectPath": "/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PeriodicTableASPstarter2/App1.Web/App1.Web.csproj",
         "packagesPath": "/Users/jesse/.nuget/packages/",
-        "outputPath": "/Users/jesse/Periodic_Table/Research/App1.Web/obj/",
+        "outputPath": "/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PeriodicTableASPstarter2/App1.Web/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/jesse/.nuget/NuGet/NuGet.Config"
@@ -532,8 +532,8 @@
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
-              "/Users/jesse/Periodic_Table/Research/App1.ServiceDefaults/App1.ServiceDefaults.csproj": {
-                "projectPath": "/Users/jesse/Periodic_Table/Research/App1.ServiceDefaults/App1.ServiceDefaults.csproj"
+              "/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PeriodicTableASPstarter2/App1.ServiceDefaults/App1.ServiceDefaults.csproj": {
+                "projectPath": "/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PeriodicTableASPstarter2/App1.ServiceDefaults/App1.ServiceDefaults.csproj"
               }
             }
           }

@@ -15,5 +15,5 @@ public class App1_Web : global::Aspire.Hosting.IProjectMetadata
     /// <summary>
     /// The path to the App1_Web project.
     /// </summary>
-    public string ProjectPath => """/Users/jesse/Periodic_Table/Research/App1.Web/App1.Web.csproj""";
+    public string ProjectPath => """/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PeriodicTableASPstarter2/App1.Web/App1.Web.csproj""";
 }

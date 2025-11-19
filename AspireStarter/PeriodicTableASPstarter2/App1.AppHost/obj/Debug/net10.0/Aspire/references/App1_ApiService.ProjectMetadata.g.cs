@@ -15,5 +15,5 @@ public class App1_ApiService : global::Aspire.Hosting.IProjectMetadata
     /// <summary>
     /// The path to the App1_ApiService project.
     /// </summary>
-    public string ProjectPath => """/Users/jesse/Periodic_Table/Research/App1.ApiService/App1.ApiService.csproj""";
+    public string ProjectPath => """/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PeriodicTableASPstarter2/App1.ApiService/App1.ApiService.csproj""";
 }

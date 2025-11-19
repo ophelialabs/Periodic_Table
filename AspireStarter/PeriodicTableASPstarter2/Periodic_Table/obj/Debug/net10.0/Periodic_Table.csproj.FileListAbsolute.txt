@@ -1,2 +1,4 @@
 /Users/jesse/Periodic_Table/Research/Periodic_Table/obj/Debug/net10.0/EmbeddedAttribute.cs
 /Users/jesse/Periodic_Table/Research/Periodic_Table/obj/Debug/net10.0/ValidatableTypeAttribute.cs
+/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PeriodicTableASPstarter2/Periodic_Table/obj/Debug/net10.0/EmbeddedAttribute.cs
+/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PeriodicTableASPstarter2/Periodic_Table/obj/Debug/net10.0/ValidatableTypeAttribute.cs

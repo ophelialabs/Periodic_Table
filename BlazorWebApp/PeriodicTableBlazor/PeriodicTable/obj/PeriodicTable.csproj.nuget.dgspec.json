@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/jesse/periodictable/PeriodicTableBlazor/PeriodicTable/PeriodicTable.csproj": {}
+    "/Users/jesse/Desktop/Company/Tools/PeriodicTable/BlazorWebApp/PeriodicTableBlazor/PeriodicTable/PeriodicTable.csproj": {}
   },
   "projects": {
-    "/Users/jesse/periodictable/PeriodicTableBlazor/PeriodicTable/PeriodicTable.csproj": {
+    "/Users/jesse/Desktop/Company/Tools/PeriodicTable/BlazorWebApp/PeriodicTableBlazor/PeriodicTable/PeriodicTable.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/jesse/periodictable/PeriodicTableBlazor/PeriodicTable/PeriodicTable.csproj",
+        "projectUniqueName": "/Users/jesse/Desktop/Company/Tools/PeriodicTable/BlazorWebApp/PeriodicTableBlazor/PeriodicTable/PeriodicTable.csproj",
         "projectName": "PeriodicTable",
-        "projectPath": "/Users/jesse/periodictable/PeriodicTableBlazor/PeriodicTable/PeriodicTable.csproj",
+        "projectPath": "/Users/jesse/Desktop/Company/Tools/PeriodicTable/BlazorWebApp/PeriodicTableBlazor/PeriodicTable/PeriodicTable.csproj",
         "packagesPath": "/Users/jesse/.nuget/packages/",
-        "outputPath": "/Users/jesse/periodictable/PeriodicTableBlazor/PeriodicTable/obj/",
+        "outputPath": "/Users/jesse/Desktop/Company/Tools/PeriodicTable/BlazorWebApp/PeriodicTableBlazor/PeriodicTable/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/jesse/.nuget/NuGet/NuGet.Config"

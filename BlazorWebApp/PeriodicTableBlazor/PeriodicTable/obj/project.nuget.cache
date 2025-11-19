@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pGHf8PBGGs8=",
+  "dgSpecHash": "YSJ2iwvRvg8=",
   "success": true,
-  "projectFilePath": "/Users/jesse/periodictable/PeriodicTableBlazor/PeriodicTable/PeriodicTable.csproj",
+  "projectFilePath": "/Users/jesse/Desktop/Company/Tools/PeriodicTable/BlazorWebApp/PeriodicTableBlazor/PeriodicTable/PeriodicTable.csproj",
   "expectedPackageFiles": [
     "/Users/jesse/.nuget/packages/microsoft.aspnetcore.app.internal.assets/10.0.0-rc.1.25451.107/microsoft.aspnetcore.app.internal.assets.10.0.0-rc.1.25451.107.nupkg.sha512"
   ],
