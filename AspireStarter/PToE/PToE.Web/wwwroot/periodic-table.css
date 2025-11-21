@@ -1,0 +1,211 @@
+/* Periodic Table Styles */
+
+.periodic-table-container {
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.periodic-table-container h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.search-box {
+    width: 100%;
+    max-width: 400px;
+    padding: 12px 16px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+}
+
+.search-box:focus {
+    outline: none;
+    border-color: #2196F3;
+    box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+}
+
+.loading,
+.no-results {
+    text-align: center;
+    padding: 40px;
+    font-size: 18px;
+    color: #666;
+}
+
+/* Periodic Table Grid */
+.periodic-table-grid {
+    display: grid;
+    grid-template-columns: repeat(18, 1fr);
+    grid-template-rows: auto;
+    gap: 6px;
+    margin-bottom: 40px;
+    padding: 20px;
+    background-color: #fafafa;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+.element-cell {
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 12px;
+    min-width: 50px;
+    user-select: none;
+}
+
+.element-cell:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+.element-number {
+    font-size: 10px;
+    color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    top: 4px;
+    left: 4px;
+}
+
+.element-symbol {
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+    line-height: 1;
+}
+
+.element-name {
+    font-size: 10px;
+    color: rgba(0, 0, 0, 0.7);
+    text-align: center;
+    margin-top: 4px;
+}
+
+.element-mass {
+    font-size: 9px;
+    color: rgba(0, 0, 0, 0.5);
+    margin-top: 2px;
+}
+
+/* Legend */
+.legend {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    margin-top: 20px;
+}
+
+.legend h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.legend-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.legend-color {
+    width: 24px;
+    height: 24px;
+    border-radius: 3px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.legend-item span {
+    font-size: 14px;
+    color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .periodic-table-grid {
+        gap: 4px;
+    }
+    
+    .element-cell {
+        min-width: 45px;
+        font-size: 10px;
+    }
+    
+    .element-symbol {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .periodic-table-container {
+        padding: 10px;
+    }
+    
+    .periodic-table-grid {
+        gap: 3px;
+        padding: 10px;
+    }
+    
+    .element-cell {
+        min-width: 35px;
+        font-size: 8px;
+        padding: 4px;
+    }
+    
+    .element-symbol {
+        font-size: 14px;
+    }
+    
+    .legend-items {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .periodic-table-grid {
+        grid-template-columns: repeat(12, 1fr);
+    }
+    
+    .element-cell {
+        min-width: 30px;
+        font-size: 7px;
+        padding: 3px;
+    }
+    
+    .element-symbol {
+        font-size: 12px;
+    }
+    
+    .element-name {
+        display: none;
+    }
+    
+    .legend-items {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,13 @@
+/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PToE/PToE.ServiceDefaults/bin/Debug/net10.0/PToE.ServiceDefaults.deps.json
+/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PToE/PToE.ServiceDefaults/bin/Debug/net10.0/PToE.ServiceDefaults.dll
+/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PToE/PToE.ServiceDefaults/bin/Debug/net10.0/PToE.ServiceDefaults.pdb
+/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PToE/PToE.ServiceDefaults/obj/Debug/net10.0/PToE.ServiceDefaults.csproj.AssemblyReference.cache
+/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PToE/PToE.ServiceDefaults/obj/Debug/net10.0/PToE.ServiceDefaults.GeneratedMSBuildEditorConfig.editorconfig
+/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PToE/PToE.ServiceDefaults/obj/Debug/net10.0/PToE.ServiceDefaults.AssemblyInfoInputs.cache
+/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PToE/PToE.ServiceDefaults/obj/Debug/net10.0/PToE.ServiceDefaults.AssemblyInfo.cs
+/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PToE/PToE.ServiceDefaults/obj/Debug/net10.0/PToE.ServiceDefaults.csproj.CoreCompileInputs.cache
+/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PToE/PToE.ServiceDefaults/obj/Debug/net10.0/PToE.ServiceDefaults.sourcelink.json
+/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PToE/PToE.ServiceDefaults/obj/Debug/net10.0/PToE.ServiceDefaults.dll
+/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PToE/PToE.ServiceDefaults/obj/Debug/net10.0/refint/PToE.ServiceDefaults.dll
+/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PToE/PToE.ServiceDefaults/obj/Debug/net10.0/PToE.ServiceDefaults.pdb
+/Users/jesse/Desktop/Company/Tools/PeriodicTable/AspireStarter/PToE/PToE.ServiceDefaults/obj/Debug/net10.0/ref/PToE.ServiceDefaults.dll

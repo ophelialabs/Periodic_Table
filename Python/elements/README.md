@@ -96,7 +96,8 @@ Select visualization type:
   2. Ionization Energies
   3. Thermal Properties
   4. Atomic Structure
-  5. All visualizations
+  5. HyperSpectral
+  6. All visualizations
   0. Cancel
 
 Enter choice (0-5): 4

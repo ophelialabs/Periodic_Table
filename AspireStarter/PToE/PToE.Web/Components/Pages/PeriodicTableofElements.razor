@@ -1,0 +1,131 @@
+﻿@page "/periodic-table"
+@rendermode InteractiveServer
+@using PToE.Web.Models
+@using PToE.Web.Services
+@inject PeriodicTableApiClient ApiClient
+
+<PageTitle>Periodic Table of Elements</PageTitle>
+
+<div class="periodic-table-container">
+    <h1>Interactive Periodic Table of Elements</h1>
+    
+    <div class="controls">
+        <input type="text" class="search-box" placeholder="Search elements by name, symbol, or category..." 
+               @oninput="OnSearchInput" />
+    </div>
+
+    @if (isLoading)
+    {
+        <div class="loading">Loading periodic table...</div>
+    }
+    else if (elements == null || !elements.Any())
+    {
+        <div class="no-results">No elements found. Try a different search.</div>
+    }
+    else
+    {
+        <div class="periodic-table-grid">
+            @foreach (var element in filteredElements.OrderBy(e => e.AtomicNumber))
+            {
+                var categoryColor = GetCategoryColor(element.Category);
+                <div class="element-cell" 
+                     style="@($"background-color: {categoryColor}; grid-column: {element.XPosition}; grid-row: {element.YPosition};")"
+                     @onclick="() => SelectElement(element)"
+                     title="@element.Name">
+                    <div class="element-number">@element.AtomicNumber</div>
+                    <div class="element-symbol">@element.Symbol</div>
+                    <div class="element-name">@element.Name</div>
+                    <div class="element-mass">@element.AtomicMass.ToString("F3")</div>
+                </div>
+            }
+        </div>
+    }
+
+    @if (selectedElement != null)
+    {
+        <ElementDetailModal Element="selectedElement" OnClose="() => SelectElement(null)" />
+    }
+
+    <div class="legend">
+        <h3>Element Categories</h3>
+        <div class="legend-items">
+            @foreach (var category in categories)
+            {
+                var color = GetCategoryColor(category);
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: @color;"></div>
+                    <span>@category</span>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    private List<Element>? elements;
+    private List<Element> filteredElements = new();
+    private Element? selectedElement;
+    private bool isLoading = true;
+    private string searchQuery = string.Empty;
+    private List<string> categories = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            elements = await ApiClient.GetAllElementsAsync();
+            if (elements != null)
+            {
+                categories = elements.Select(e => e.Category).Distinct().OrderBy(c => c).ToList();
+                filteredElements = elements;
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading periodic table: {ex.Message}");
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private async Task OnSearchInput(ChangeEventArgs e)
+    {
+        searchQuery = e.Value?.ToString() ?? string.Empty;
+
+        if (string.IsNullOrWhiteSpace(searchQuery))
+        {
+            filteredElements = elements ?? new();
+        }
+        else
+        {
+            var results = await ApiClient.SearchElementsAsync(searchQuery);
+            filteredElements = results ?? new();
+        }
+    }
+
+    private void SelectElement(Element? element)
+    {
+        selectedElement = element;
+    }
+
+    private string GetCategoryColor(string category)
+    {
+        return category.ToLower() switch
+        {
+            "alkali metal" => "#FFB5B5",
+            "alkaline earth metal" => "#FFDDB3",
+            "lanthanide" => "#FFBFFF",
+            "actinide" => "#FFB5B5",
+            "transition metal" => "#FFC0C0",
+            "post-transition metal" => "#CCCCCC",
+            "metalloid" => "#CCCC99",
+            "diatomic nonmetal" => "#A0FFA0",
+            "polyatomic nonmetal" => "#A0FFA0",
+            "noble gas" => "#C0FFFF",
+            "halogen" => "#FFFF99",
+            _ => "#E0E0E0"
+        };
+    }
+}

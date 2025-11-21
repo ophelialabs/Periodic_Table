@@ -1,0 +1,357 @@
+@using PToE.Web.Models
+
+<div class="modal-overlay" @onclick="OnBackdropClick">
+    <div class="modal-content" @onclick:stopPropagation>
+        <div class="modal-header">
+            <h2>@Element.Name</h2>
+            <button class="close-btn" @onclick="OnClose">&times;</button>
+        </div>
+
+        <div class="modal-body">
+            <div class="element-main-info">
+                <div class="symbol-display" style="background-color: @GetCategoryColor(Element.Category);">
+                    <div class="symbol">@Element.Symbol</div>
+                    <div class="number">@Element.AtomicNumber</div>
+                </div>
+
+                <div class="basic-properties">
+                    <h3>Basic Properties</h3>
+                    <table>
+                        <tr>
+                            <td>Atomic Mass:</td>
+                            <td>@Element.AtomicMass.ToString("F4")</td>
+                        </tr>
+                        <tr>
+                            <td>Period:</td>
+                            <td>@Element.Period</td>
+                        </tr>
+                        <tr>
+                            <td>Group:</td>
+                            <td>@Element.Group</td>
+                        </tr>
+                        <tr>
+                            <td>Block:</td>
+                            <td>@Element.Block</td>
+                        </tr>
+                        <tr>
+                            <td>Category:</td>
+                            <td>@Element.Category</td>
+                        </tr>
+                        <tr>
+                            <td>Phase:</td>
+                            <td>@Element.Phase</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            @if (!string.IsNullOrWhiteSpace(Element.Summary))
+            {
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <p>@Element.Summary</p>
+                </div>
+            }
+
+            <div class="properties-grid">
+                @if (Element.Density.HasValue)
+                {
+                    <div class="property">
+                        <span class="label">Density:</span>
+                        <span class="value">@Element.Density?.ToString("F3") g/cm³</span>
+                    </div>
+                }
+
+                @if (Element.MeltingPoint.HasValue)
+                {
+                    <div class="property">
+                        <span class="label">Melting Point:</span>
+                        <span class="value">@Element.MeltingPoint?.ToString("F2") K</span>
+                    </div>
+                }
+
+                @if (Element.BoilingPoint.HasValue)
+                {
+                    <div class="property">
+                        <span class="label">Boiling Point:</span>
+                        <span class="value">@Element.BoilingPoint?.ToString("F2") K</span>
+                    </div>
+                }
+
+                @if (Element.Electronegativity.HasValue)
+                {
+                    <div class="property">
+                        <span class="label">Electronegativity:</span>
+                        <span class="value">@Element.Electronegativity?.ToString("F2")</span>
+                    </div>
+                }
+
+                @if (Element.ElectronAffinity.HasValue)
+                {
+                    <div class="property">
+                        <span class="label">Electron Affinity:</span>
+                        <span class="value">@Element.ElectronAffinity?.ToString("F2") kJ/mol</span>
+                    </div>
+                }
+
+                @if (!string.IsNullOrWhiteSpace(Element.ElectronConfiguration))
+                {
+                    <div class="property full-width">
+                        <span class="label">Electron Configuration:</span>
+                        <span class="value">@Element.ElectronConfiguration</span>
+                    </div>
+                }
+            </div>
+
+            @if (Element.Image != null && !string.IsNullOrWhiteSpace(Element.Image.Url))
+            {
+                <div class="element-image">
+                    <img src="@Element.Image.Url" alt="@Element.Name" />
+                    <p class="image-attribution">@Element.Image.Title</p>
+                </div>
+            }
+
+            @if (!string.IsNullOrWhiteSpace(Element.DiscoveredBy))
+            {
+                <div class="discovery-info">
+                    <p><strong>Discovered by:</strong> @Element.DiscoveredBy</p>
+                </div>
+            }
+
+            @if (!string.IsNullOrWhiteSpace(Element.WikipediaSource))
+            {
+                <div class="source-link">
+                    <a href="@Element.WikipediaSource" target="_blank" rel="noopener noreferrer">
+                        Learn more on Wikipedia →
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<style>
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+    }
+
+    .modal-content {
+        background-color: white;
+        border-radius: 8px;
+        max-width: 600px;
+        width: 90%;
+        max-height: 80vh;
+        overflow-y: auto;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    .modal-header h2 {
+        margin: 0;
+        font-size: 24px;
+    }
+
+    .close-btn {
+        background: none;
+        border: none;
+        font-size: 28px;
+        cursor: pointer;
+        color: #666;
+    }
+
+    .close-btn:hover {
+        color: #000;
+    }
+
+    .modal-body {
+        padding: 20px;
+    }
+
+    .element-main-info {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+
+    .symbol-display {
+        border-radius: 8px;
+        padding: 20px;
+        text-align: center;
+        min-width: 120px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .symbol {
+        font-size: 32px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .number {
+        font-size: 12px;
+        color: #666;
+    }
+
+    .basic-properties {
+        flex: 1;
+    }
+
+    .basic-properties h3 {
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+
+    .basic-properties table {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .basic-properties td {
+        padding: 4px 0;
+    }
+
+    .basic-properties td:first-child {
+        font-weight: bold;
+        padding-right: 10px;
+    }
+
+    .summary {
+        margin: 20px 0;
+        padding: 15px;
+        background-color: #f5f5f5;
+        border-radius: 4px;
+    }
+
+    .summary h3 {
+        margin-top: 0;
+    }
+
+    .summary p {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .properties-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin: 20px 0;
+    }
+
+    .property {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .property.full-width {
+        grid-column: 1 / -1;
+    }
+
+    .property .label {
+        font-weight: bold;
+        font-size: 13px;
+        color: #666;
+    }
+
+    .property .value {
+        font-size: 14px;
+        color: #333;
+        margin-top: 4px;
+    }
+
+    .element-image {
+        margin: 20px 0;
+    }
+
+    .element-image img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 4px;
+        margin-bottom: 10px;
+    }
+
+    .image-attribution {
+        font-size: 12px;
+        color: #999;
+        margin: 0;
+    }
+
+    .discovery-info {
+        margin: 20px 0;
+        padding: 15px;
+        background-color: #f0f7ff;
+        border-left: 4px solid #2196F3;
+        border-radius: 4px;
+    }
+
+    .discovery-info p {
+        margin: 0;
+        font-size: 14px;
+    }
+
+    .source-link {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .source-link a {
+        color: #2196F3;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .source-link a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+@code {
+    [Parameter]
+    public Element Element { get; set; } = null!;
+
+    [Parameter]
+    public EventCallback OnClose { get; set; }
+
+    private async Task OnBackdropClick()
+    {
+        await OnClose.InvokeAsync();
+    }
+
+    private string GetCategoryColor(string category)
+    {
+        return category.ToLower() switch
+        {
+            "alkali metal" => "#FFB5B5",
+            "alkaline earth metal" => "#FFDDB3",
+            "lanthanide" => "#FFBFFF",
+            "actinide" => "#FFB5B5",
+            "transition metal" => "#FFC0C0",
+            "post-transition metal" => "#CCCCCC",
+            "metalloid" => "#CCCC99",
+            "diatomic nonmetal" => "#A0FFA0",
+            "polyatomic nonmetal" => "#A0FFA0",
+            "noble gas" => "#C0FFFF",
+            "halogen" => "#FFFF99",
+            _ => "#E0E0E0"
+        };
+    }
+}

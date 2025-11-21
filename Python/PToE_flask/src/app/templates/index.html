@@ -361,12 +361,12 @@
             drawSchrodingerVisualization(element);
         }, 100);
         
-        // Spectral Bands
+        // Hyperspectral (e.g. band ratios, minimum wavelength mapping) and classified lithium-bearing minerals
         const spectralContainer = document.getElementById('spectralContainer');
         if (element.spectral_img) {
             spectralContainer.innerHTML = `
-                <h3>📊 Spectral Bands</h3>
-                <img src="${element.spectral_img}" alt="Spectral Bands" 
+                <h3>📊 Hyperspectral</h3>
+                <img src="${element.spectral_img}" alt="Hyperspectral" 
                      class="spectral-image">
             `;
         } else {
