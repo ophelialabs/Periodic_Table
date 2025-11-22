@@ -1,5 +1,21 @@
 # Periodic Table Multi-Platform Project Suite
 
+**Current favorite is PeriodicTable/Python/PToE**
+    - Python/Tkinter
+    - HyperSpectral
+    - Analysis
+
+**Features In Progress:**
+    - Quantum Integration
+    - Bridge frontend actions to quantum operations
+    - Quantum State Analysis
+    - Job Submission that generates QIR code preperation.
+    - Azure Quantum: Integration with quantum hardware providers (IonQ, Quantinuum). User should only have to login to choose QPU provider and submit jobs
+    - 🔬 Quantum Research Agent
+    - Generate comprehensive analysis reports and visualizations. This will:
+    - Print a detailed statistical report (pdf)
+    - Generate 9 high-quality PNG visualizations in the `periodic_table_analysis/` directory
+
 ## Overview
 
 This repository contains multiple implementations of an interactive periodic table of elements integrated with quantum computing research capabilities. Each implementation is optimized for specific use cases and deployment environments, enabling you to choose the right platform for your needs.

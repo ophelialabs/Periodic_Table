@@ -1,0 +1,251 @@
+/* Main application styles */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0f0f0f;
+    color: #e0e0e0;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: white;
+}
+
+.header .subtitle {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Main layout */
+.main-layout {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    gap: 0;
+}
+
+.left-panel {
+    flex: 0 0 700px;
+    display: flex;
+    flex-direction: column;
+    background-color: #1a1a1a;
+    border-right: 1px solid #333;
+    overflow: hidden;
+    min-width: 400px;
+}
+
+.right-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #1a1a1a;
+    overflow: hidden;
+    min-width: 250px;
+}
+
+.panel-divider {
+    width: 4px;
+    background-color: #333;
+    cursor: col-resize;
+    transition: background-color 0.2s;
+}
+
+.panel-divider:hover {
+    background-color: #667eea;
+}
+
+.panel-divider.dragging {
+    background-color: #667eea;
+}
+
+/* Search container */
+.search-container {
+    padding: 1.5rem;
+    border-bottom: 1px solid #333;
+    display: flex;
+    gap: 1rem;
+}
+
+.search-container input,
+.search-container select {
+    flex: 1;
+    padding: 0.75rem;
+    background-color: #252525;
+    border: 1px solid #444;
+    border-radius: 4px;
+    color: #e0e0e0;
+    font-size: 0.95rem;
+}
+
+.search-container input::placeholder {
+    color: #888;
+}
+
+.search-container input:focus,
+.search-container select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 8px rgba(102, 126, 234, 0.3);
+}
+
+/* Periodic table container */
+.periodic-table-container {
+    flex: 1;
+    overflow: auto;
+    padding: 1rem;
+}
+
+.periodic-table {
+    display: grid;
+    grid-template-columns: repeat(18, 1fr);
+    gap: 0.5rem;
+    padding: 0.5rem;
+}
+
+/* Element details */
+.element-details {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.5rem;
+}
+
+.no-selection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.element-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.element-header {
+    grid-column: 1 / -1;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #667eea;
+    padding-bottom: 1rem;
+}
+
+.element-header h2 {
+    font-size: 2rem;
+    color: #667eea;
+}
+
+.element-property {
+    padding: 0.75rem;
+    background-color: #252525;
+    border-left: 3px solid #667eea;
+    border-radius: 4px;
+}
+
+.element-property-name {
+    font-weight: 600;
+    color: #aaa;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+.element-property-value {
+    color: #e0e0e0;
+    font-size: 1.1rem;
+    margin-top: 0.25rem;
+}
+
+/* Visualization controls */
+.visualization-controls {
+    background-color: #252525;
+    border-top: 1px solid #333;
+    padding: 1.5rem;
+    max-height: 25vh;
+    overflow-y: auto;
+}
+
+.visualization-controls h3 {
+    color: #667eea;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.viz-group {
+    margin-bottom: 1.5rem;
+}
+
+.viz-group h4 {
+    color: #aaa;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    margin-left: 0.5rem;
+}
+
+.viz-btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    margin: 0.25rem 0.5rem 0.25rem 0;
+    background-color: #333;
+    border: 1px solid #444;
+    border-radius: 4px;
+    color: #e0e0e0;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.viz-btn:hover {
+    background-color: #667eea;
+    border-color: #667eea;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.viz-btn:active {
+    transform: translateY(0);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #667eea;
+}

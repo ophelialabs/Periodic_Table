@@ -16,10 +16,18 @@ import urllib.request
 from src.element import Element
 from src.element_database import ElementDatabase
 from src.element_visual import ElementVisualizer
+from src.app.agent_chat import AgentChatDialog
 
 
 class PeriodicTableApp:
     """Main tkinter application for interactive periodic table."""
+    
+    # Screen size breakpoints (in pixels)
+    BREAKPOINTS = {
+        'small': 1000,    # < 1000px: small screen
+        'medium': 1400,   # 1000-1400px: medium screen
+        'large': 1400     # >= 1400px: large screen
+    }
     
     def __init__(self, root: tk.Tk):
         """
@@ -30,8 +38,19 @@ class PeriodicTableApp:
         """
         self.root = root
         self.root.title("Periodic Table - Interactive Desktop Application")
-        self.root.geometry("1600x1000")
+        
+        # Determine initial window size based on screen resolution
+        screen_width = self.root.winfo_screenwidth()
+        screen_height = self.root.winfo_screenheight()
+        
+        # Set responsive default geometry (80% of screen, min 1000x800)
+        default_width = max(1000, int(screen_width * 0.8))
+        default_height = max(800, int(screen_height * 0.8))
+        self.root.geometry(f"{default_width}x{default_height}")
         self.root.minsize(1000, 800)
+        
+        # Bind resize event for responsive adjustments
+        self.root.bind('<Configure>', self._on_window_resize)
         
         # Initialize database
         try:
@@ -43,21 +62,84 @@ class PeriodicTableApp:
         
         self.selected_elements: List[Element] = []
         self.current_element: Optional[Element] = None
+        self.current_screen_size = 'medium'  # Track current breakpoint
         
         # Setup UI
         self._setup_styles()
         self._create_widgets()
         self._load_periodic_table()
     
+    def _get_screen_breakpoint(self) -> str:
+        """Determine current screen size breakpoint."""
+        width = self.root.winfo_width()
+        if width < self.BREAKPOINTS['small']:
+            return 'small'
+        elif width < self.BREAKPOINTS['medium']:
+            return 'medium'
+        else:
+            return 'large'
+    
+    def _on_window_resize(self, event):
+        """Handle window resize events for responsive behavior."""
+        new_breakpoint = self._get_screen_breakpoint()
+        if new_breakpoint != self.current_screen_size and hasattr(self, 'periodic_table_frame'):
+            self.current_screen_size = new_breakpoint
+            self._adjust_layout_for_screen_size()
+    
+    def _adjust_layout_for_screen_size(self):
+        """Adjust UI layout and styling based on current screen size."""
+        if self.current_screen_size == 'small':
+            # Small screens: reduce font sizes and element button sizes
+            self._apply_small_screen_styles()
+        elif self.current_screen_size == 'medium':
+            # Medium screens: balanced layout
+            self._apply_medium_screen_styles()
+        else:  # large
+            # Large screens: optimize spacing and sizes
+            self._apply_large_screen_styles()
+    
+    def _apply_small_screen_styles(self):
+        """Apply styles optimized for small screens (<1000px)."""
+        style = ttk.Style()
+        style.configure('Title.TLabel', font=('Helvetica', 12, 'bold'))
+        style.configure('Header.TLabel', font=('Helvetica', 10, 'bold'))
+        style.configure('Normal.TLabel', font=('Helvetica', 8))
+    
+    def _apply_medium_screen_styles(self):
+        """Apply styles optimized for medium screens (1000-1400px)."""
+        style = ttk.Style()
+        style.configure('Title.TLabel', font=('Helvetica', 14, 'bold'))
+        style.configure('Header.TLabel', font=('Helvetica', 11, 'bold'))
+        style.configure('Normal.TLabel', font=('Helvetica', 9))
+    
+    def _apply_large_screen_styles(self):
+        """Apply styles optimized for large screens (>1400px)."""
+        style = ttk.Style()
+        style.configure('Title.TLabel', font=('Helvetica', 16, 'bold'))
+        style.configure('Header.TLabel', font=('Helvetica', 12, 'bold'))
+        style.configure('Normal.TLabel', font=('Helvetica', 10))
+    
     def _setup_styles(self):
         """Setup custom tkinter styles."""
         style = ttk.Style()
         style.theme_use('clam')
         
-        # Configure colors
-        style.configure('Title.TLabel', font=('Helvetica', 16, 'bold'))
-        style.configure('Header.TLabel', font=('Helvetica', 12, 'bold'))
-        style.configure('Normal.TLabel', font=('Helvetica', 10))
+        # Initialize with medium screen defaults
+        self._apply_medium_screen_styles()
+    
+    def _get_element_button_dimensions(self) -> Tuple[int, int, int]:
+        """
+        Get responsive element button dimensions based on screen size.
+        
+        Returns:
+            Tuple of (width, height, font_size)
+        """
+        if self.current_screen_size == 'small':
+            return (4, 2, 8)  # Smaller buttons for small screens
+        elif self.current_screen_size == 'medium':
+            return (5, 2, 9)  # Balanced sizing
+        else:  # large
+            return (6, 3, 10)  # Larger buttons for large screens
     
     def _create_widgets(self):
         """Create main UI widgets."""
@@ -88,12 +170,21 @@ class PeriodicTableApp:
         # Clear button
         ttk.Button(top_frame, text="Clear", command=self._clear_search).pack(side=tk.LEFT, padx=5)
         
-        # ===== CONTENT FRAME: Periodic Table (left) + Details (right) =====
-        left_frame = ttk.Frame(content_frame)
-        left_frame.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+        # Agent button (right side)
+        ttk.Button(top_frame, text="🤖 Quantum Agent", command=self._open_agent_chat).pack(side=tk.RIGHT, padx=5)
         
-        right_frame = ttk.Frame(content_frame)
-        right_frame.pack(side=tk.RIGHT, fill=tk.BOTH, expand=False, padx=(10, 0))
+        # ===== CONTENT FRAME: Periodic Table (left) + Details (right) with Resizable Divider =====
+        # Use PanedWindow for resizable panels with a draggable divider
+        paned_window = tk.PanedWindow(content_frame, orient=tk.HORIZONTAL, bg='gray80', sashwidth=5)
+        paned_window.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+        
+        # Left panel: Periodic Table
+        left_frame = ttk.Frame(paned_window)
+        paned_window.add(left_frame, width=700, minsize=400)
+        
+        # Right panel: Element Details
+        right_frame = ttk.Frame(paned_window)
+        paned_window.add(right_frame, width=300, minsize=250)
         
         # Periodic Table Grid
         table_label = ttk.Label(left_frame, text="Periodic Table", style='Header.TLabel')
@@ -138,38 +229,6 @@ class PeriodicTableApp:
         self.properties_text = scrolledtext.ScrolledText(prop_frame, width=35, height=30, 
                                                         font=('Courier', 9))
         self.properties_text.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
-        
-        # Tab 3: Visualization
-        vis_frame = ttk.Frame(self.details_notebook)
-        self.details_notebook.add(vis_frame, text="Visualization")
-        
-        vis_buttons_frame = ttk.Frame(vis_frame)
-        vis_buttons_frame.pack(pady=10)
-        
-        ttk.Button(vis_buttons_frame, text="3D Atomic Structure",
-                  command=lambda: self._show_visualization('atomic_structure')).pack(pady=5)
-        ttk.Button(vis_buttons_frame, text="Ionization Energies",
-                  command=lambda: self._show_visualization('ionization')).pack(pady=5)
-        ttk.Button(vis_buttons_frame, text="Electron Shells",
-                  command=lambda: self._show_visualization('shells')).pack(pady=5)
-        ttk.Button(vis_buttons_frame, text="Thermal Properties",
-                  command=lambda: self._show_visualization('thermal')).pack(pady=5)
-        
-        # Tab 4: Analysis
-        analysis_frame = ttk.Frame(self.details_notebook)
-        self.details_notebook.add(analysis_frame, text="Analysis")
-        
-        analysis_buttons_frame = ttk.Frame(analysis_frame)
-        analysis_buttons_frame.pack(pady=10)
-        
-        ttk.Button(analysis_buttons_frame, text="Generate Report",
-                  command=self._generate_analysis_report).pack(pady=5)
-        ttk.Button(analysis_buttons_frame, text="All Element Visualizations",
-                  command=self._generate_all_visualizations).pack(pady=5)
-        ttk.Button(analysis_buttons_frame, text="Periodic Table Heatmap",
-                  command=self._show_heatmap).pack(pady=5)
-        ttk.Button(analysis_buttons_frame, text="Property Distributions",
-                  command=self._show_distributions).pack(pady=5)
         
         # Selected elements display
         selected_label = ttk.Label(right_frame, text="Selected Elements", style='Normal.TLabel')
@@ -282,16 +341,19 @@ class PeriodicTableApp:
                   command=self._show_distributions).pack(side=tk.LEFT, padx=5)
     
     def _create_element_button(self, element: Element, row: int, col: int):
-        """Create a button for an element."""
+        """Create a button for an element with responsive sizing."""
+        # Get button dimensions based on screen size
+        width, height, font_size = self._get_element_button_dimensions()
+        
         btn = tk.Button(
             self.periodic_table_frame,
             text=f"{element.symbol}\n{element.atomic_mass:.2f}",
             command=lambda e=element: self._on_element_selected(e),
             bg=element.color,
             fg='black',
-            width=6,
-            height=3,
-            font=('Helvetica', 10, 'bold'),
+            width=width,
+            height=height,
+            font=('Helvetica', font_size, 'bold'),
             relief=tk.RAISED,
             bd=2
         )
@@ -556,6 +618,14 @@ Y Position: {elem.ypos}
                               "Visualization generation completed.")
         except Exception as e:
             messagebox.showerror("Error", f"Could not generate visualizations: {e}")
+    
+    def _open_agent_chat(self):
+        """Open the Quantum Research Agent chat dialog."""
+        try:
+            # Open agent chat dialog with current element context
+            AgentChatDialog(self.root, current_element=self.current_element)
+        except Exception as e:
+            messagebox.showerror("Error", f"Could not open agent: {e}")
 
 
 def main():

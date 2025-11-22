@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}Periodic Table Explorer{% endblock %}
+
+{% block content %}
+<div class="header">
+    <h1>Periodic Table Explorer</h1>
+    <p class="subtitle">Interactive periodic table with comprehensive element analysis</p>
+</div>
+
+<div class="main-layout">
+    <!-- Left Panel: Periodic Table and Search -->
+    <div class="left-panel" id="leftPanel">
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search elements by name or symbol...">
+            <select id="categoryFilter">
+                <option value="">All Categories</option>
+                {% for category in categories %}
+                <option value="{{ category }}">{{ category.title() }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <div class="periodic-table-container">
+            <div class="periodic-table" id="periodicTable">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Divider for resizing -->
+    <div class="panel-divider" id="panelDivider"></div>
+    
+    <!-- Right Panel: Element Details -->
+    <div class="right-panel" id="rightPanel">
+        <div class="element-details" id="elementDetails">
+            <div class="no-selection">
+                <p>Select an element to view details</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Visualization Controls -->
+<div class="visualization-controls">
+    <h3>Visualizations</h3>
+    
+    <div class="viz-group">
+        <h4>3D Analysis</h4>
+        <button class="viz-btn" onclick="showVisualization('3d-atomic')">3D Atomic Structure</button>
+        <button class="viz-btn" onclick="showVisualization('3d-ionization')">Ionization Energy</button>
+        <button class="viz-btn" onclick="showVisualization('3d-electron')">Electron Shells</button>
+        <button class="viz-btn" onclick="showVisualization('3d-thermal')">Thermal Properties</button>
+    </div>
+    
+    <div class="viz-group">
+        <h4>HyperSpectral Analysis</h4>
+        <button class="viz-btn" onclick="showVisualization('spectral-signature')">Spectral Signature</button>
+        <button class="viz-btn" onclick="showVisualization('band-ratio')">Band Ratio Analysis</button>
+        <button class="viz-btn" onclick="showVisualization('wavelength-map')">Wavelength Mapping</button>
+    </div>
+    
+    <div class="viz-group">
+        <h4>Property Analysis</h4>
+        <button class="viz-btn" onclick="showVisualization('mineral-detection')">Mineral Detection</button>
+        <button class="viz-btn" onclick="showVisualization('property-heatmap')">Property Heatmap</button>
+        <button class="viz-btn" onclick="showVisualization('distribution-chart')">Distribution Charts</button>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/periodic-table.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Pass initial data to JavaScript
+    const elementsData = {{ elements | tojson | safe }};
+    const categoriesData = {{ categories | tojson | safe }};
+</script>
+<script src="{{ url_for('static', filename='js/periodic-table.js') }}"></script>
+<script src="{{ url_for('static', filename='js/element-details.js') }}"></script>
+<script src="{{ url_for('static', filename='js/search.js') }}"></script>
+<script src="{{ url_for('static', filename='js/resizable.js') }}"></script>
+<script src="{{ url_for('static', filename='js/visualizations.js') }}"></script>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+{% endblock %}

@@ -218,6 +218,7 @@ class ElementVisualizer:
     def plot_atomic_structure_3d(self, element: Element, save_path: Optional[str] = None) -> plt.Figure:
         """
         Visualize complete atomic structure with electron distribution on shells.
+        Grid remains stationary while atom model can be rotated/panned.
         
         Args:
             element: Element to visualize
@@ -241,6 +242,24 @@ class ElementVisualizer:
         # Subplot 1: 3D atomic structure with electron distribution
         ax1 = fig.add_subplot(gs[0, 0], projection='3d')
         
+        # Set up fixed grid reference
+        max_radius = len(shells) * 1.5
+        
+        # Create background grid in world coordinates (fixed position)
+        # Grid planes at z=0
+        grid_range = np.linspace(-max_radius, max_radius, 10)
+        for x_val in grid_range:
+            ax1.plot([x_val, x_val], [-max_radius, max_radius], [0, 0], 
+                    'k-', alpha=0.15, linewidth=0.5)
+        for y_val in grid_range:
+            ax1.plot([-max_radius, max_radius], [y_val, y_val], [0, 0], 
+                    'k-', alpha=0.15, linewidth=0.5)
+        
+        # Add axes lines for reference
+        ax1.plot([-max_radius, max_radius], [0, 0], [0, 0], 'r-', linewidth=2, alpha=0.5, label='X-axis')
+        ax1.plot([0, 0], [-max_radius, max_radius], [0, 0], 'g-', linewidth=2, alpha=0.5, label='Y-axis')
+        ax1.plot([0, 0], [0, 0], [-max_radius, max_radius], 'b-', linewidth=2, alpha=0.5, label='Z-axis')
+        
         # Plot nucleus
         ax1.scatter([0], [0], [0], s=500, c='red', marker='o', 
                    edgecolors='darkred', linewidth=2, label='Nucleus')
@@ -262,7 +281,8 @@ class ElementVisualizer:
             ax1.scatter(x, y, z, s=100, c=[color]*num_electrons, alpha=0.6, 
                        edgecolors='black', linewidth=0.5, label=f'Shell {shell_idx+1}')
             
-            # Draw shell orbit
+            # Draw shell orbit (circular path on XY plane)
+            # This moves with the atom, which is the desired behavior
             u = np.linspace(0, 2 * np.pi, 50)
             circle_x = radius * np.cos(u)
             circle_y = radius * np.sin(u)
@@ -274,10 +294,12 @@ class ElementVisualizer:
         ax1.set_zlabel('Z (Bohr radii)')
         ax1.set_title(f'{element.symbol} - Electron Distribution')
         
-        max_radius = len(shells) * 1.5
         ax1.set_xlim([-max_radius, max_radius])
         ax1.set_ylim([-max_radius, max_radius])
         ax1.set_zlim([-max_radius, max_radius])
+        
+        # Enable grid but keep it subtle
+        ax1.grid(True, alpha=0.2)
         
         # Subplot 2: Ionization energies
         ax2 = fig.add_subplot(gs[0, 1])
