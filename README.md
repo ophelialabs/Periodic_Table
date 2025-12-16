@@ -1,6 +1,19 @@
 # Periodic Table Multi-Platform Project Suite
 
-**Add images for projects**
+ - CPK/element1
+![banner](CPK/element1/public/element1.png)
+
+ - HTML/PToE
+ ![banner](HTML/PToE/public/PToE.png)
+
+ - Python/elements
+ ![banner](Python/elements/public/elements.png)
+
+ - Python/PeriodicTablePy
+ ![banner](Python/PeriodicTablePy/public/PeriodicTablePy.png)
+
+ - Python/PToE
+ ![banner](Python/PToE/public/PToE.png)
 
 **Current favorite is PeriodicTable/Python/PToE**
     - Python/Tkinter
