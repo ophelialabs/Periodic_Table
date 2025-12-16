@@ -1,3 +1,5 @@
+![banner](public/PToE.png)
+
 # 🧪 Interactive Periodic Table - Complete Project
 
 ## 🎉 Project Successfully Created!

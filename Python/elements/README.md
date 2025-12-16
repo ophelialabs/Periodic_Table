@@ -1,3 +1,5 @@
+![banner](assets/public/elements.png)
+
 # Interactive Periodic Table of Elements
 
 A comprehensive interactive application for exploring the periodic table with advanced 3D visualizations and detailed element analysis.

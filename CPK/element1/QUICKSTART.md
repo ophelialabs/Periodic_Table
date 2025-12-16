@@ -62,7 +62,7 @@ I've successfully set up an **Interactive Periodic Table of Elements** with full
 
 ### Option 1: Quick Start (Recommended)
 ```bash
-cd /Users/jesse/Desktop/Company/Tools/PeriodicTable/CPK/element1
+cd PeriodicTable/CPK/element1
 npm install
 npm run dev
 ```
@@ -70,13 +70,14 @@ npm run dev
 ### Option 2: Manual Setup
 ```bash
 # Install frontend dependencies
-npm install
+pnpm install
+pnpm install @copilotkit/react-core@1.50.0 @copilotkit/react-ui@1.50.0 @copilotkit/react-textarea@1.50.0 && pnpm install @copilotkit/runtime@1.50.0
 
 # Run development server
 npm run dev:ui
 
 # In another terminal, run the agent
-npm run dev:agent
+pnpm run dev:agent
 ```
 
 ### Option 3: Debug Mode

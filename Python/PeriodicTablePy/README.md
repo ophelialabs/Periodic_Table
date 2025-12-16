@@ -1,3 +1,5 @@
+![banner](assets/public/PeriodicTablePy.png)
+
 # Interactive Periodic Table with Quantum Research Agent
 
 An advanced desktop application featuring an interactive periodic table of elements integrated with a quantum research agent for generating 3D molecular visualizations and conducting quantum simulations.
@@ -60,7 +62,7 @@ PeriodicTableCP/
 
 1. Clone the repository:
 ```bash
-cd PeriodicTableCP
+cd PeriodicTablePy
 ```
 
 2. Install Python dependencies:

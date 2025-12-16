@@ -1,3 +1,5 @@
+![banner](assets/public/PToE.png)
+
 Desktop application for interactive periodic table with quantum research integration.
 
 ## Getting Started

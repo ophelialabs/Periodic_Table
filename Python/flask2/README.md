@@ -54,8 +54,6 @@
 
 ### Implement Features (Roadmap)
 
-### Implement Features (Roadmap)
-
 [ ] **3D Visualizations** (4 methods) - Framework ready for implementation
 - Interactive 3D atomic structure visualization (Bohr model)
 - Ionization energy visualization
@@ -176,6 +174,7 @@ flask2/
 
 1. Install dependencies:
 ```bash
+source venv/bin/activate
 pip install -r requirements.txt
 ```
 

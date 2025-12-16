@@ -7,11 +7,11 @@ wtforms==3.0.1
 flask-bootstrap==3.3.7.1
 flask-moment==1.0.5
 flask-caching==2.0.2
-Pillow==10.0.0
+Pillow
 sphinx==7.2.5
 python-dotenv==1.0.0
 pyjwt==2.8.0
-scipy==1.11.3
+scipy
 pandas==2.0.3
 matplotlib==3.7.2
 numpy==1.24.3
