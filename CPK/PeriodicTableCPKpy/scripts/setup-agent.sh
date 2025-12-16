@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Navigate to the agent directory
+# Change Directory for multi-agent setup
 cd "$(dirname "$0")/../agent" || exit 1
 
 # Create virtual environment if it doesn't exist

@@ -1,5 +1,7 @@
 # Periodic Table Multi-Platform Project Suite
 
+**Add images for projects**
+
 **Current favorite is PeriodicTable/Python/PToE**
     - Python/Tkinter
     - HyperSpectral
