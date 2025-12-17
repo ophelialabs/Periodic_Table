@@ -9,7 +9,7 @@
  - Python/elements
  ![banner](Python/elements/public/elements.png)
 
- - Python/PeriodicTablePy
+ - [Python/PeriodicTablePy](Python/PeriodicTablePy)
  ![banner](Python/PeriodicTablePy/public/PeriodicTablePy.png)
 
  - Python/PToE
