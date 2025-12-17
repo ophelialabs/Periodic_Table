@@ -1,4 +1,4 @@
-![banner](assets/public/PeriodicTablePy.png)
+![banner](public/PeriodicTablePy.png)
 
 # Interactive Periodic Table with Quantum Research Agent
 
