@@ -1,11 +1,11 @@
 ![banner](public/PToE.png)
 
-Design a comprehensive AI integration plan tailored to a specific business function, or
+1. Design a comprehensive AI integration plan tailored to a specific business function, or
 
-Develop an executive presentation that outlines a transformative, agent-based AI initiative.
+2. Develop an executive presentation that outlines a transformative, agent-based AI initiative.
 
-Support your project with a detailed risk-benefit analysis, cost implications, and measurable KPIs to demonstrate strategic value.
-
+3. Support your project with a detailed risk-benefit analysis, cost implications, and measurable KPIs to demonstrate strategic value.
+---
 Desktop application for interactive periodic table with quantum research integration.
 
 ## Getting Started
