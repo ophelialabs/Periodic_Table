@@ -1,3 +1,4 @@
+[Quantum Computing for Databases: Overview and Challenges](https://arxiv.org/html/2405.12511v1#bib.bib6)
 1. Design a comprehensive AI integration plan tailored to a specific business function, or
 
 2. Develop an executive presentation that outlines a transformative, agent-based AI initiative.
