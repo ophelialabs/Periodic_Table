@@ -12,7 +12,7 @@
  - [Python/PeriodicTablePy](Python/PeriodicTablePy)
  ![banner](Python/PeriodicTablePy/public/PeriodicTablePy.png)
 
- - Python/PToE
+ - [Python/PToE](Python/PToE)
  ![banner](Python/PToE/public/PToE.png)
 
 **Current favorite is PeriodicTable/Python/PToE**
