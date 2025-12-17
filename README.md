@@ -1,3 +1,5 @@
+# Find a general use implementation for integrating az user profile, q-agent that handles qir code preperation, job submission and statistical analyzation of ANY given project e.g. - So as to not be limited to the periodic table and to also provide specialist capabilities 
+
 # Periodic Table Multi-Platform Project Suite
 
  - CPK/element1
