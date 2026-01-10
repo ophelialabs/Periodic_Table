@@ -1,4 +1,4 @@
-![banner](elements.png)
+![banner](./public/elements.png)
 
 # Interactive Periodic Table of Elements
 
