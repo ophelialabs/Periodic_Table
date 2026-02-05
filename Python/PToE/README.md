@@ -1,4 +1,5 @@
 ![banner](public/PToE.png)
+*Note: Element comparison but no compound equations
 
 1. Design a comprehensive AI integration plan tailored to a specific business function, or
 
