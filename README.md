@@ -14,7 +14,7 @@
  -  record polarization states, timestamps, and error rates for post-pass scientific analysis.
  -  demonstrate full-duplex classical optical communication alongside its quantum functions.
  -  To prevent stray light from interfering with sensitive single-photon detection, most quantum experiments must take place during eclipse periods at night.
- -  SOTM TOGS
+ -  SOTM / TOGS
 ---
 # Periodic Table Multi-Platform Project Suite
 
