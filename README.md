@@ -11,6 +11,10 @@
  - QIR code prep
  -  statistical analyzation of ANY given project
  -  e.g.: So as to not be limited to the periodic table and to also provide specialist capabilities
+ -  record polarization states, timestamps, and error rates for post-pass scientific analysis.
+ -  demonstrate full-duplex classical optical communication alongside its quantum functions.
+ -  To prevent stray light from interfering with sensitive single-photon detection, most quantum experiments must take place during eclipse periods at night.
+ -  SOTM TOGS
 ---
 # Periodic Table Multi-Platform Project Suite
 
